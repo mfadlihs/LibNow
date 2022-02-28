@@ -12,7 +12,7 @@ import {
 	Lainnya,
 	Nav,
 	Peminjaman,
-} from '../Component/HomeComponent';
+} from '../Component/HomeComp';
 
 const primaryColor = '#898989';
 const secondaryColor = '#E5E5E5';

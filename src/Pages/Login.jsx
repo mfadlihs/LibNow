@@ -10,7 +10,7 @@ import {
 	InputForm,
 	ButtonForm,
 	NavigateButton,
-} from '../Component/LoginComponent';
+} from '../Component/LoginComp';
 import { Label } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
