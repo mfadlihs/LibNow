@@ -4,9 +4,21 @@ export const Theme = createTheme({
 	palette: {
 		primary: {
 			main: '#898989',
+			// main: '#ff0000',
+			// main: '#00ffff',
 		},
 		secondary: {
-			main: '#DBDBDB',
+			main: '#00ffff',
+		},
+		tersier: {
+			main: '#fff',
+		},
+		text: {
+			primary: '#000',
+		},
+		black: {
+			main: '#1a1a1a',
+			contrastText: '#fff',
 		},
 	},
 	typography: {
