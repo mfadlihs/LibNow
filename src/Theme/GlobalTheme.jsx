@@ -8,7 +8,7 @@ export const Theme = createTheme({
 			// main: '#00ffff',
 		},
 		secondary: {
-			main: '#00ffff',
+			main: '#b3b3b3',
 		},
 		tersier: {
 			main: '#fff',
@@ -20,6 +20,9 @@ export const Theme = createTheme({
 		black: {
 			main: '#1a1a1a',
 			contrastText: '#fff',
+		},
+		gray: {
+			main: '#666666',
 		},
 	},
 	typography: {

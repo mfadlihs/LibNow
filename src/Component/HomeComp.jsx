@@ -118,7 +118,7 @@ const CardImage = styled(CardMedia)({
 	height: '400px',
 });
 
-function CaardBook() {
+export function CardBook() {
 	return (
 		<Card
 			variant='outlined'
@@ -153,7 +153,7 @@ export function Content() {
 			{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => {
 				return (
 					<Grid lg={4} item key={index}>
-						<CaardBook />
+						<CardBook />
 					</Grid>
 				);
 			})}

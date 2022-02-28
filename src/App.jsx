@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home';
 import DaftarPerpustakaan from './Pages/DaftarPerpustakaan';
+import { PencarianBuku } from './Pages/PencarianBuku';
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='/login' element={<Login />}></Route>
 				<Route path='/daftar-perpustakaan' element={<DaftarPerpustakaan />} />
+				<Route path='/search' element={<PencarianBuku />} />
 			</Routes>
 		</>
 	);
