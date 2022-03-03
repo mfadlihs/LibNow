@@ -1,29 +1,62 @@
-import { Button, TextField } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { styled, width } from '@mui/system';
-const primaryColor = '#898989';
-const secondaryColor = '#E5E5E5';
-import icon from '../Assets/Images/icon.png';
+import iconLogin from '../Assets/Images/iconLogin.png';
+import owl from '../Assets/Images/owlLogin.png';
+import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
 
 export const Container = styled('div')({
 	display: 'flex',
 	height: '100vh',
 });
 
-export const ImageSide = styled('div')({
-	height: '100%',
-	flexBasis: '55%',
-	backgroundColor: '#898989',
-	backgroundImage: `url(${icon})`,
-	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'center',
+const useStyles = makeStyles({
+	iconLogin: {},
+	imageSide: {
+		height: '100%',
+		flexBasis: '35%',
+		backgroundColor: '#FDF4AF',
+		position: 'relative',
+	},
 });
 
+const classes = () => {
+	return useStyles();
+};
+
+// ===================================================
+// ============== Bagian Sebelah kiri  ===============
+// ===================================================
+export function ImageSide() {
+	return (
+		<Box className={classes().imageSide}>
+			<Logo src={iconLogin} />
+			<Owl src={owl} />
+		</Box>
+	);
+}
+
+const Logo = styled('img')({
+	position: 'absolute',
+	top: '25%',
+	left: '136px',
+});
+
+const Owl = styled('img')({
+	position: 'absolute',
+	right: '-25%',
+	top: '25%',
+});
+
+// ===================================================
+// ============== Bagian Sebelah kanan ===============
+// ===================================================
 export const Wrapper = styled('div')({
-	flexBasis: '45%',
+	flexBasis: '65%',
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
-	padding: '0px 50px',
+	padding: '255px 192px',
 });
 
 export const WrapperLogin = styled('div')({
@@ -34,16 +67,17 @@ export const LoginButton = styled(Button)({
 	height: 'auto',
 });
 
-export const Header = styled('div')({
-	marginBottom: 50,
+export const Header = styled(Box)({
+	marginBottom: 67,
 });
 
 export const InputForm = styled(TextField)({
-	marginBottom: '45px',
+	marginBottom: '37px',
 });
 
 export const ButtonForm = styled(Button)({
-	padding: '10px 40px',
+	// padding: '10px 40px',
+	padding: '9px 16px',
 });
 
 export const NavigateButton = styled('div')({

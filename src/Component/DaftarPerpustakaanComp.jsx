@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/system';
+import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles(theme => ({
 	cardLibrary: {

@@ -11,8 +11,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import { CardBook } from './HomeComp';
 
-const primaryColor = '#898989';
-const secondaryColor = '#b3b3b3';
+import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles(theme => ({
 	toolbar: theme.mixins.toolbar,
@@ -77,7 +76,7 @@ export function SearchNav() {
 	);
 }
 
-function QuerySearch() {
+export function QuerySearch() {
 	return (
 		<Box className={classes().SearchInput}>
 			<SearchIcon color='gray' sx={{ marginRight: '16px' }} fontSize='small' />

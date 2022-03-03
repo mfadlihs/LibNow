@@ -17,9 +17,7 @@ import { styled } from '@mui/system';
 import icon from '../Assets/Images/icon.png';
 import StarIcon from '@mui/icons-material/Star';
 import { Children } from 'react';
-
-const primaryColor = '#898989';
-const secondaryColor = '#E5E5E5';
+import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -46,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 	jumbotron: {
 		marginBottom: '37px',
 		height: '274px',
-		backgroundColor: secondaryColor,
+		backgroundColor: secondary,
 		backgroundImage: `url(${icon})`,
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center',
@@ -110,7 +108,7 @@ const Cards = styled(Card)({
 });
 
 const CardImage = styled(CardMedia)({
-	backgroundColor: secondaryColor,
+	backgroundColor: secondary,
 	backgroundImage: `url(${icon})`,
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'auto',
@@ -162,7 +160,7 @@ export function Content() {
 }
 
 export const Footer = styled(Grid)({
-	backgroundColor: primaryColor,
+	backgroundColor: primary,
 	padding: '81px 124px 56px',
 });
 

@@ -24,7 +24,10 @@ const useStyles = makeStyles({
 		height: '100vh',
 	},
 	header: {
-		marginBottom: '50px',
+		textAlign: 'center',
+	},
+	link: {
+		textDecoration: 'none',
 	},
 });
 
@@ -38,36 +41,51 @@ export default function Login() {
 				<WrapperLogin>
 					<form autoComplete='off'>
 						<Header>
-							<Typography className={classes.header} variant='h1' gutterBottom>
-								Masuk ke Akun Anda
+							<Typography
+								className={classes.header}
+								color='textPrimary'
+								variant='h2'
+							>
+								Masuk ke LibNow
 							</Typography>
 						</Header>
-						<Typography gutterBottom variant='h2'>
+						<Typography gutterBottom variant='h4'>
 							E-mail/No HP
 						</Typography>
-						{/* <TextField variant='outlined' fullWidth placeholder='label' /> */}
 						<InputForm
 							type='email'
 							variant='outlined'
 							fullWidth
-							placeholder='label'
+							placeholder='Masukkan e-mail atau No.HP'
+							color='primary'
 						/>
-						<br />
-						<Typography gutterBottom variant='h2'>
+						<Typography gutterBottom variant='h4'>
 							Password
 						</Typography>
 						<InputForm
+							sx={{ marginBottom: '2px' }}
 							type='password'
 							variant='outlined'
 							fullWidth
 							placeholder='label'
 						/>
+						<Typography
+							sx={{ marginBottom: '53px' }}
+							variant='body2'
+							align='right'
+						>
+							Lupa Password?
+						</Typography>
 						<NavigateButton>
-							<Typography variant='h2'>
-								Belum Punya akun? <Link to='/signup'>Daftar</Link>
+							<Typography variant='body1'>
+								Belum Punya akun?{' '}
+								<Link className={classes.link} to='/signup'>
+									Daftar
+								</Link>
 							</Typography>
-							<ButtonForm variant='contained'>
-								<Typography variant='h2'>Masuk</Typography>
+							<ButtonForm color='tertiary' variant='contained'>
+								<Typography variant='Button'>Masuk</Typography>
+								{/* masuk */}
 							</ButtonForm>
 						</NavigateButton>
 					</form>

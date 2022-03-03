@@ -1,45 +1,77 @@
-import { createTheme } from '@mui/material';
+import { Box, createTheme } from '@mui/material';
+
+export const primary = '#898989';
+export const secondary = '#E06161';
+export const tertiary = '#F8BC61';
+export const complementary1 = '#FFF';
+export const complementary2 = '#001E1D';
+export const complementary3 = '#7B8284';
 
 export const Theme = createTheme({
 	palette: {
 		primary: {
-			main: '#898989',
-			// main: '#ff0000',
-			// main: '#00ffff',
+			main: '#E9E4E5',
 		},
 		secondary: {
-			main: '#b3b3b3',
+			main: '#E06161',
 		},
-		tersier: {
+		tertiary: {
+			main: '#F8BC61',
+		},
+		complementary1: {
 			main: '#fff',
 		},
+		complementary2: {
+			main: '#001E1D',
+		},
+		complementary3: {
+			main: '#7B8284',
+		},
 		text: {
-			primary: '#1A1A1A',
-			secondary: '#666666',
-		},
-		black: {
-			main: '#1a1a1a',
-			contrastText: '#fff',
-		},
-		gray: {
-			main: '#666666',
+			primary: '#000',
+			secondary: 'red',
 		},
 	},
 	typography: {
 		fontFamily: "'Inter', sans-serif",
-		fontSize: 12,
-		fontWeightRegular: 500,
-		h1: {
-			fontSize: 24,
-			fontWeight: 600,
-		},
 		h2: {
-			fontSize: 16,
-			fontWeight: 600,
+			fontSize: '47px',
+			fontWeight: 500,
+			lineHeight: '47px',
 		},
 		h3: {
+			fontSize: 33,
+			fontWeight: 500,
+			lineHeight: '33px',
+			letterSpacing: '0.25px',
+		},
+		h4: {
+			fontSize: 19,
+			lineHeight: '19px',
+			fontWeight: 500,
+			letterSpacing: '0.15px',
+		},
+		body1: {
+			fontSize: 16,
+			lineHeight: '16px',
+			fontWeight: 'normal',
+			letterSpacing: '0.5px',
+		},
+		body2: {
 			fontSize: 14,
-			fontWeight: 600,
+			lineHeight: '19px',
+			fontWeight: 'normal',
+			letterSpacing: '0.25px',
+		},
+		Button: {
+			fontSize: '14px',
+			fontWeight: 500,
+			lineHeight: '14px',
+			letterSpacing: '1.25px',
 		},
 	},
 });
+
+export function Clear() {
+	return <Box sx={{ clear: 'both' }}></Box>;
+}
