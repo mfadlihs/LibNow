@@ -8,7 +8,7 @@ import { useRef, useState } from 'react';
 import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles(theme => ({
-	toolbar: theme.mixins.toolbar,
+	// toolbar: theme.mixins.toolbar,
 	nav: {
 		padding: '8px 0',
 	},

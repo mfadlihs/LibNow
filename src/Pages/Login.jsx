@@ -8,11 +8,11 @@ import {
 	Container,
 	Header,
 	InputForm,
-	ButtonForm,
 	NavigateButton,
 } from '../Component/LoginComp';
 import { Label } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { GlobalButton } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles({
 	imageSide: {
@@ -83,10 +83,10 @@ export default function Login() {
 									Daftar
 								</Link>
 							</Typography>
-							<ButtonForm color='tertiary' variant='contained'>
-								<Typography variant='Button'>Masuk</Typography>
+							<GlobalButton color='tertiary' variant='contained'>
+								<Typography variant='Button'>Ini masuk</Typography>
 								{/* masuk */}
-							</ButtonForm>
+							</GlobalButton>
 						</NavigateButton>
 					</form>
 				</WrapperLogin>

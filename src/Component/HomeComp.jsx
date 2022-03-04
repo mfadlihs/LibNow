@@ -6,7 +6,6 @@ import {
 	CardContent,
 	CardMedia,
 	Grid,
-	Link,
 	Paper,
 	TextField,
 	Toolbar,
@@ -17,7 +16,13 @@ import { styled } from '@mui/system';
 import icon from '../Assets/Images/icon.png';
 import StarIcon from '@mui/icons-material/Star';
 import { Children } from 'react';
-import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
+import {
+	GlobalButton,
+	primary,
+	secondary,
+	tertiary,
+} from '../Theme/GlobalTheme';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -38,9 +43,6 @@ const useStyles = makeStyles(theme => ({
 	button: {
 		textTransform: 'none',
 	},
-	navSide: {
-		flexGrow: 1,
-	},
 	jumbotron: {
 		marginBottom: '37px',
 		height: '274px',
@@ -55,9 +57,24 @@ const classes = () => {
 	return useStyles();
 };
 
+// ============================================
+// =================== Nav ====================
+// ============================================
+
+const NavInside = styled(Toolbar)({
+	['@media(min-width : 601px)']: {
+		paddingRight: 60,
+		paddingLeft: 60,
+	},
+});
+
 const ButtonNav = styled(Button)({
 	textTransform: 'none',
 	marginLeft: '88px',
+});
+
+const NavSide = styled(Box)({
+	flexGrow: 1,
 });
 
 export function Nav() {
@@ -65,29 +82,34 @@ export function Nav() {
 
 	return (
 		<>
-			<AppBar className={classes.nav} color='tersier' position='fixed'>
-				<Toolbar
-					sx={{
-						['@media(min-width : 1200px)']: {
-							paddingRight: '60px',
-							paddingLeft: '60px',
-						},
-					}}
-				>
-					<div className={classes.navSide}>
-						<Typography variant='h1'>Logo</Typography>
-					</div>
+			<AppBar className={classes.nav} color='primary' position='fixed'>
+				<NavInside>
+					<NavSide>
+						<Link to='/'>
+							<img height='40px' src={icon} />
+						</Link>
+					</NavSide>
 
-					<ButtonNav color='inherit'>
-						<Typography variant='h1'>Rak Buku</Typography>
-					</ButtonNav>
-					<ButtonNav color='inherit'>
-						<Typography variant='h1'>Perpustakaan</Typography>
-					</ButtonNav>
-					<ButtonNav color='inherit'>
-						<Typography variant='h1'>Masuk</Typography>
-					</ButtonNav>
-				</Toolbar>
+					<Box>
+						<GlobalButton color='tertiary' variant='contained'>
+							rak buku
+						</GlobalButton>
+						<GlobalButton
+							sx={{ marginLeft: '60px' }}
+							color='tertiary'
+							variant='contained'
+						>
+							perpustakaan
+						</GlobalButton>
+						<GlobalButton
+							sx={{ marginLeft: '60px' }}
+							color='secondary'
+							variant='contained'
+						>
+							MASUK
+						</GlobalButton>
+					</Box>
+				</NavInside>
 			</AppBar>
 			<div className={`${classes.toolbar} ${classes.toolbar2}`}></div>
 		</>
@@ -95,12 +117,20 @@ export function Nav() {
 }
 
 export function Jumbotron() {
-	return <div className={classes().jumbotron}></div>;
+	return <Box></Box>;
 }
+
+// =========================================
+// ============ Container ==================
+// =========================================
 
 export const Container = styled('div')({
 	padding: '0px 69px 66px',
 });
+
+// ====================================
+// Card ===============================
+// ====================================
 
 const Cards = styled(Card)({
 	border: '2px solid #1A1A1A',
@@ -108,11 +138,11 @@ const Cards = styled(Card)({
 });
 
 const CardImage = styled(CardMedia)({
-	backgroundColor: secondary,
-	backgroundImage: `url(${icon})`,
+	// backgroundColor: secondary,
+	backgroundImage: `url(https://drive.google.com/file/d/1pKMqAHI5RC1dKoffCxjGfEKAaSyoZl1O/view?usp=sharing)`,
 	backgroundRepeat: 'no-repeat',
-	backgroundSize: 'auto',
-	backgroundPosition: 'center',
+	backgroundSize: 'cober',
+	// backgroundPosition: 'center',
 	height: '400px',
 });
 
@@ -145,6 +175,10 @@ export function CardBook() {
 	);
 }
 
+// =========================================
+// ============ Content ====================
+// =========================================
+
 export function Content() {
 	return (
 		<Grid container rowSpacing='48px' columnSpacing='85px'>
@@ -174,21 +208,21 @@ export function FooterForm({ children }) {
 				{/* {children} */}
 				<InputForm
 					placeholder='Nama'
-					color='black'
+					// color='black'
 					variant='outlined'
 					fullWidth
 					label='Nama'
 				/>
 				<InputForm
 					placeholder='E-mail'
-					color='black'
+					// color='black'
 					variant='outlined'
 					fullWidth
 					label='E-mail'
 				/>
 				<InputForm
 					placeholder='Feedback'
-					color='black'
+					// color='black'
 					variant='outlined'
 					fullWidth
 					label='Feedback'
@@ -198,7 +232,7 @@ export function FooterForm({ children }) {
 				<ButtonForm
 					sx={{ padding: '10px 16px' }}
 					variant='contained'
-					color='black'
+					// color='black'
 				>
 					KIRIM
 				</ButtonForm>
@@ -225,7 +259,7 @@ export function Contact() {
 			</Typography>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -234,7 +268,7 @@ export function Contact() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -243,7 +277,7 @@ export function Contact() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -252,7 +286,7 @@ export function Contact() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -271,7 +305,7 @@ export function Peminjaman() {
 			</Typography>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -280,7 +314,7 @@ export function Peminjaman() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -289,7 +323,7 @@ export function Peminjaman() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -298,7 +332,7 @@ export function Peminjaman() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -317,7 +351,7 @@ export function Lainnya() {
 			</Typography>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -326,7 +360,7 @@ export function Lainnya() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -335,7 +369,7 @@ export function Lainnya() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'
@@ -344,7 +378,7 @@ export function Lainnya() {
 			</Link>
 			<Link
 				sx={{ display: 'block' }}
-				href='#'
+				to='/'
 				variant='h3'
 				color='textPrimary'
 				underline='none'

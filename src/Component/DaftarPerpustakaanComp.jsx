@@ -2,10 +2,11 @@ import { Box, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/system';
 import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
+import { Theme } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles(theme => ({
 	cardLibrary: {
-		border: `2px solid ${theme.palette.black.main}`,
+		border: `2px solid #000`,
 		borderRadius: 8,
 		padding: '16px',
 		marginBottom: 31,

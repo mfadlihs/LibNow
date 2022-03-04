@@ -10,18 +10,17 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { CardBook } from './HomeComp';
-
 import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles(theme => ({
-	toolbar: theme.mixins.toolbar,
+	// toolbar: theme.mixins.toolbar,
 	nav: {
 		padding: '8px 0',
 	},
 	SearchInput: {
 		display: 'flex',
 		alignItems: 'center',
-		border: `1px solid ${theme.palette.secondary.main}`,
+		border: `1px solid ${secondary}`,
 		padding: '5px 16px',
 		borderRadius: '4px',
 		width: '624px',

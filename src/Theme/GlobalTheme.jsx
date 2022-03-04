@@ -1,4 +1,5 @@
-import { Box, createTheme } from '@mui/material';
+import { Box, Button, createTheme } from '@mui/material';
+import { styled } from '@mui/system';
 
 export const primary = '#898989';
 export const secondary = '#E06161';
@@ -63,7 +64,7 @@ export const Theme = createTheme({
 			fontWeight: 'normal',
 			letterSpacing: '0.25px',
 		},
-		Button: {
+		button: {
 			fontSize: '14px',
 			fontWeight: 500,
 			lineHeight: '14px',
@@ -75,3 +76,7 @@ export const Theme = createTheme({
 export function Clear() {
 	return <Box sx={{ clear: 'both' }}></Box>;
 }
+export const GlobalButton = styled(Button)({
+	// padding: '10px 40px',
+	padding: '9px 16px',
+});

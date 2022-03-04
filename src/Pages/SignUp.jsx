@@ -11,7 +11,8 @@ import {
 } from '../Component/LoginComp';
 import { Label } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { ButtonForm, InputForm } from '../Component/SignUpComp';
+import { InputForm } from '../Component/LoginComp';
+import { GlobalButton } from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles({
 	imageSide: {
@@ -45,7 +46,7 @@ export default function SignUp() {
 								color='textPrimary'
 								variant='h2'
 							>
-								Daftar LibNow Sekarang!
+								Daftar
 							</Typography>
 						</Header>
 						<Typography gutterBottom variant='h4'>
@@ -76,13 +77,17 @@ export default function SignUp() {
 							fullWidth
 							placeholder='Masukkan password'
 						/>
-						<ButtonForm
-							sx={{ width: '100%', padding: '16px 0' }}
-							variant='contained'
-							color='tertiary'
-						>
-							<Typography variant='h4'>DAFTAR</Typography>
-						</ButtonForm>
+						<NavigateButton>
+							<Typography variant='body1'>
+								Sudah punya akun?{' '}
+								<Link className={classes.link} to='/login'>
+									Masuk
+								</Link>
+							</Typography>
+							<GlobalButton variant='contained' color='tertiary'>
+								<Typography variant='h4'>DAFTAR</Typography>
+							</GlobalButton>
+						</NavigateButton>
 					</form>
 				</WrapperLogin>
 			</Wrapper>
