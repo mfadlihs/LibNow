@@ -1,7 +1,7 @@
 import { Box, Button, createTheme } from '@mui/material';
 import { styled } from '@mui/system';
 
-export const primary = '#898989';
+export const primary = '#E9E4E5';
 export const secondary = '#E06161';
 export const tertiary = '#F8BC61';
 export const complementary1 = '#FFF';
@@ -30,24 +30,25 @@ export const Theme = createTheme({
 		},
 		text: {
 			primary: '#000',
-			secondary: 'red',
+			secondary: '#7B8284',
 		},
 	},
 	typography: {
 		fontFamily: "'Inter', sans-serif",
+		// fontFamily: 'sans-serif',
 		h2: {
 			fontSize: '47px',
 			fontWeight: 500,
 			lineHeight: '47px',
 		},
 		h3: {
-			fontSize: 33,
-			fontWeight: 500,
+			fontSize: '33px',
 			lineHeight: '33px',
+			fontWeight: 500,
 			letterSpacing: '0.25px',
 		},
 		h4: {
-			fontSize: 19,
+			fontSize: '19px',
 			lineHeight: '19px',
 			fontWeight: 500,
 			letterSpacing: '0.15px',

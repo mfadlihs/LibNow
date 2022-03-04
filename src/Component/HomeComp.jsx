@@ -23,6 +23,10 @@ import {
 	tertiary,
 } from '../Theme/GlobalTheme';
 import { Link } from 'react-router-dom';
+import cardImage from '../Assets/Images/cardImage.jpg';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -47,9 +51,8 @@ const useStyles = makeStyles(theme => ({
 		marginBottom: '37px',
 		height: '274px',
 		backgroundColor: secondary,
-		backgroundImage: `url(${icon})`,
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: 'center',
+		position: 'relative',
+		padding: '63px 77px',
 	},
 }));
 
@@ -116,8 +119,10 @@ export function Nav() {
 	);
 }
 
+// Jumbotron ==============================
+
 export function Jumbotron() {
-	return <Box></Box>;
+	return <Box className={classes().jumbotron}></Box>;
 }
 
 // =========================================
@@ -137,41 +142,42 @@ const Cards = styled(Card)({
 	borderRadius: '8px',
 });
 
-const CardImage = styled(CardMedia)({
-	// backgroundColor: secondary,
-	backgroundImage: `url(https://drive.google.com/file/d/1pKMqAHI5RC1dKoffCxjGfEKAaSyoZl1O/view?usp=sharing)`,
-	backgroundRepeat: 'no-repeat',
-	backgroundSize: 'cober',
-	// backgroundPosition: 'center',
-	height: '400px',
-});
-
 export function CardBook() {
 	return (
-		<Card
-			variant='outlined'
-			sx={{ border: '2px solid #1a1a1a', borderRadius: '8px' }}
+		<Box
+			sx={{
+				padding: '20px 23px',
+				borderRadius: '8px',
+				boxShadow: '0px 0px 10px 0px #00000040',
+			}}
 		>
-			<CardImage component='div' />
-			<CardContent>
-				<Typography variant='h1'>Judul</Typography>
-				<Typography
-					sx={{ marginBottom: '8px' }}
-					color='textSecondary'
-					variant='h2'
-				>
-					Penulis
-				</Typography>
-				<Box sx={{ marginBottom: '8px' }}>
-					{[1, 1, 1, 1, 1].map((i, index) => (
-						<StarIcon fontSize='small' key={index} />
-					))}
+			<Card sx={{ boxShadow: '0' }}>
+				<CardMedia
+					sx={{ marginBottom: '15px' }}
+					image={cardImage}
+					component='img'
+					height='493'
+				/>
+				<Box>
+					<Typography variant='h3' gutterBottom>
+						Kitab Kawin
+					</Typography>
+					<Typography
+						sx={{ marginBottom: '8px' }}
+						color='textSecondary'
+						variant='h4'
+					>
+						Laksmi Pammuntjak
+					</Typography>
+					<Box sx={{ marginBottom: '8px' }}>
+						{[1, 1, 1, 1, 1].map((i, index) => (
+							<StarIcon color='tertiary' fontSize='small' key={index} />
+						))}
+					</Box>
+					<Typography variant='body2'>Perpustakaan Kota Malang, 2+</Typography>
 				</Box>
-				<Typography color='textSecondary'>
-					Tersedia di Perpustakaan Malang, 6+
-				</Typography>
-			</CardContent>
-		</Card>
+			</Card>
+		</Box>
 	);
 }
 
@@ -193,6 +199,8 @@ export function Content() {
 	);
 }
 
+// ================ footer ==================
+
 export const Footer = styled(Grid)({
 	backgroundColor: primary,
 	padding: '81px 124px 56px',
@@ -202,40 +210,25 @@ export function FooterForm({ children }) {
 	return (
 		<Grid item lg={3.5}>
 			<form autoComplete='off'>
-				<Typography sx={{ marginBottom: '26px' }} variant='h1'>
+				<Typography sx={{ marginBottom: '20px' }} variant='h4'>
 					Ada masukan untuk kami?
 				</Typography>
-				{/* {children} */}
-				<InputForm
-					placeholder='Nama'
-					// color='black'
-					variant='outlined'
-					fullWidth
-					label='Nama'
-				/>
-				<InputForm
-					placeholder='E-mail'
-					// color='black'
-					variant='outlined'
-					fullWidth
-					label='E-mail'
-				/>
+				<InputForm placeholder='Nama' variant='outlined' fullWidth />
+				<InputForm placeholder='E-mail' variant='outlined' fullWidth />
 				<InputForm
 					placeholder='Feedback'
-					// color='black'
 					variant='outlined'
 					fullWidth
-					label='Feedback'
 					multiline
 					rows={4}
 				/>
-				<ButtonForm
-					sx={{ padding: '10px 16px' }}
+				<GlobalButton
+					sx={{ float: 'right' }}
 					variant='contained'
-					// color='black'
+					color='tertiary'
 				>
-					KIRIM
-				</ButtonForm>
+					kirim
+				</GlobalButton>
 			</form>
 		</Grid>
 	);
@@ -246,6 +239,12 @@ export const InputForm = styled(TextField)({
 	borderRadius: '4px',
 	outline: '0px',
 	marginBottom: '17px',
+	'& input': {
+		padding: '12px 16px',
+	},
+	'& fieldset': {
+		border: '1px solid #b3b3b3',
+	},
 });
 export const ButtonForm = styled(Button)({
 	float: 'right',
@@ -254,91 +253,33 @@ export const ButtonForm = styled(Button)({
 export function Contact() {
 	return (
 		<Grid item lg={2.83}>
-			<Typography sx={{ marginBottom: '17px' }} variant='h1'>
+			<Typography sx={{ marginBottom: '17px' }} variant='h4'>
 				Hubungi Kami
 			</Typography>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Instagram
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Facebook
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Twitter
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Website
-			</Link>
+			<FacebookRoundedIcon sx={{ marginRight: '15px' }} fontSize='large' />
+			<InstagramIcon sx={{ marginRight: '15px' }} fontSize='large' />
+			<TwitterIcon fontSize='large' />
+			<Box sx={{ marginTop: '20px' }}>
+				<img src={icon} height='28px' />
+			</Box>
 		</Grid>
 	);
 }
 
+const ListFooter = styled(Typography)({
+	marginBottom: '17px',
+});
+
 export function Peminjaman() {
 	return (
 		<Grid item lg={2.83}>
-			<Typography sx={{ marginBottom: '17px' }} variant='h1'>
+			<Typography sx={{ marginBottom: '18px' }} variant='h4'>
 				Peminjaman
 			</Typography>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Perpustakaan Penyedia
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Daftar Buku
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Peminjaman
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Pengembalian
-			</Link>
+			<ListFooter>Perpustakaan Penyedia</ListFooter>
+			<ListFooter>Daftar Buku</ListFooter>
+			<ListFooter>Peminjaman</ListFooter>
+			<ListFooter>Pengembalian</ListFooter>
 		</Grid>
 	);
 }
@@ -346,45 +287,12 @@ export function Peminjaman() {
 export function Lainnya() {
 	return (
 		<Grid item lg={2.83}>
-			<Typography sx={{ marginBottom: '17px' }} variant='h1'>
+			<Typography sx={{ marginBottom: '17px' }} variant='h4'>
 				Lainnya
 			</Typography>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Syarat dan Ketentuan
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Kebijakan & Privasi
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Bantuan
-			</Link>
-			<Link
-				sx={{ display: 'block' }}
-				to='/'
-				variant='h3'
-				color='textPrimary'
-				underline='none'
-			>
-				Hubungi Kami
-			</Link>
+			<ListFooter>Syarat & Kebijakan</ListFooter>
+			<ListFooter>Kebijakan</ListFooter>
+			<ListFooter>Bantuan</ListFooter>
 		</Grid>
 	);
 }

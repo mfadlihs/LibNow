@@ -33,8 +33,8 @@ export default function Home() {
 			</Container>
 			<Footer container columnSpacing={4}>
 				<FooterForm />
-				<Contact />
 				<Peminjaman />
+				<Contact />
 				<Lainnya />
 			</Footer>
 		</div>

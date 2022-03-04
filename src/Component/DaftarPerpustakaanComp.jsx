@@ -1,15 +1,24 @@
 import { Box, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/system';
-import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
+import {
+	GlobalButton,
+	primary,
+	secondary,
+	tertiary,
+} from '../Theme/GlobalTheme';
 import { Theme } from '../Theme/GlobalTheme';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const useStyles = makeStyles(theme => ({
 	cardLibrary: {
-		border: `2px solid #000`,
-		borderRadius: 8,
-		padding: '16px',
+		borderRadius: 20,
+		padding: '34px 38px',
 		marginBottom: 31,
+		backgroundColor: theme.palette.primary.main,
+		display: 'flex',
+		alignItems: 'center',
 	},
 }));
 
@@ -17,21 +26,31 @@ const classes = () => {
 	return useStyles();
 };
 
+const CardSection = styled(Box)({
+	display: 'flex',
+	alignItems: 'center',
+	marginTop: '17px',
+});
+
 export function CardLibrary() {
 	return (
 		<Box className={classes().cardLibrary}>
-			<CardLibraryMedia />
-			<Typography variant='h1'>Nama Perpustakaan</Typography>
-			<Typography
-				sx={{ marginBottom: '16px' }}
-				variant='h3'
-				color='textSecondary'
-			>
-				Alamat Perpustakaan
-			</Typography>
-			<Button color='black' variant='contained'>
+			<Box sx={{ flexGrow: 1 }}>
+				<Typography variant='h3'>Perpustakaan Kota Malang</Typography>
+				<CardSection>
+					<LocationOnIcon sx={{ marginRight: '13px' }} fontSize='small' />
+					<Typography>
+						Jl. Ijen No.30A, Oro-oro Dowo, Klojen, Kota Malang, Jawa Timur 65119
+					</Typography>
+				</CardSection>
+				<CardSection>
+					<AccessTimeIcon sx={{ marginRight: '13px' }} fontSize='small' />
+					<Typography>8.30 - 15.30 WIB</Typography>
+				</CardSection>
+			</Box>
+			<GlobalButton variant='contained' color='tertiary'>
 				KUNJUNGI PERPUSTAKAAN
-			</Button>
+			</GlobalButton>
 		</Box>
 	);
 }
@@ -42,5 +61,5 @@ const CardLibraryMedia = styled('div')({
 });
 
 export const Content = styled('div')({
-	padding: '0px 69px 69px',
+	padding: '0px 69px 0',
 });
