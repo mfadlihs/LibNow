@@ -75,11 +75,6 @@ export const InputForm = styled(TextField)({
 	marginBottom: '37px',
 });
 
-export const GlobalButton = styled(Button)({
-	// padding: '10px 40px',
-	padding: '9px 16px',
-});
-
 export const NavigateButton = styled('div')({
 	display: 'flex',
 	alignItems: 'center',

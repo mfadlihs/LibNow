@@ -12,7 +12,14 @@ import {
 } from '../Component/LoginComp';
 import { Label } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { GlobalButton } from '../Theme/GlobalTheme';
+import { GlobalButton, GlobalLink } from '../Theme/GlobalTheme';
+import {
+	primary,
+	secondary,
+	tertiary,
+	textPrimary,
+	textSecondary,
+} from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles({
 	imageSide: {
@@ -27,7 +34,7 @@ const useStyles = makeStyles({
 		textAlign: 'center',
 	},
 	link: {
-		textDecoration: 'none',
+		color: secondary,
 	},
 });
 
@@ -67,7 +74,7 @@ export default function Login() {
 							type='password'
 							variant='outlined'
 							fullWidth
-							placeholder='label'
+							placeholder='Masukkan Password'
 						/>
 						<Typography
 							sx={{ marginBottom: '53px' }}
@@ -79,13 +86,12 @@ export default function Login() {
 						<NavigateButton>
 							<Typography variant='body1'>
 								Belum Punya akun?{' '}
-								<Link className={classes.link} to='/signup'>
+								<GlobalLink sx={{ color: secondary }} to='/signup'>
 									Daftar
-								</Link>
+								</GlobalLink>
 							</Typography>
 							<GlobalButton color='tertiary' variant='contained'>
-								<Typography variant='Button'>Ini masuk</Typography>
-								{/* masuk */}
+								MASUK
 							</GlobalButton>
 						</NavigateButton>
 					</form>

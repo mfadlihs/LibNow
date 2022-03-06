@@ -1,5 +1,6 @@
 import { Box, Button, createTheme } from '@mui/material';
 import { styled } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 export const primary = '#E9E4E5';
 export const secondary = '#E06161';
@@ -7,7 +8,7 @@ export const tertiary = '#F8BC61';
 export const complementary1 = '#FFF';
 export const complementary2 = '#001E1D';
 export const complementary3 = '#7B8284';
-export const textPrimary = '#000';
+export const textPrimary = '#000000';
 export const textSecondary = '#7B8284';
 
 export const Theme = createTheme({
@@ -82,4 +83,9 @@ export function Clear() {
 export const GlobalButton = styled(Button)({
 	// padding: '10px 40px',
 	padding: '9px 16px',
+});
+
+export const GlobalLink = styled(Link)({
+	textDecoration: 'none',
+	color: 'unset',
 });

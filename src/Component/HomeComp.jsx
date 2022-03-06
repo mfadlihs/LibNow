@@ -18,6 +18,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { Children } from 'react';
 import {
 	GlobalButton,
+	GlobalLink,
 	primary,
 	secondary,
 	tertiary,
@@ -88,29 +89,35 @@ export function Nav() {
 			<AppBar className={classes.nav} color='primary' position='fixed'>
 				<NavInside>
 					<NavSide>
-						<Link to='/'>
+						<GlobalLink to='/'>
 							<img height='40px' src={icon} />
-						</Link>
+						</GlobalLink>
 					</NavSide>
 
 					<Box>
-						<GlobalButton color='tertiary' variant='contained'>
-							rak buku
-						</GlobalButton>
-						<GlobalButton
-							sx={{ marginLeft: '60px' }}
-							color='tertiary'
-							variant='contained'
-						>
-							perpustakaan
-						</GlobalButton>
-						<GlobalButton
-							sx={{ marginLeft: '60px' }}
-							color='secondary'
-							variant='contained'
-						>
-							MASUK
-						</GlobalButton>
+						<GlobalLink to='/search'>
+							<GlobalButton color='tertiary' variant='contained'>
+								rak buku
+							</GlobalButton>
+						</GlobalLink>
+						<GlobalLink to='/daftar-perpustakaan'>
+							<GlobalButton
+								sx={{ marginLeft: '60px' }}
+								color='tertiary'
+								variant='contained'
+							>
+								perpustakaan
+							</GlobalButton>
+						</GlobalLink>
+						<GlobalLink to='login'>
+							<GlobalButton
+								sx={{ marginLeft: '60px' }}
+								color='secondary'
+								variant='contained'
+							>
+								MASUK
+							</GlobalButton>
+						</GlobalLink>
 					</Box>
 				</NavInside>
 			</AppBar>

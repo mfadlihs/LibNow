@@ -12,7 +12,14 @@ import {
 import { Label } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { InputForm } from '../Component/LoginComp';
-import { GlobalButton } from '../Theme/GlobalTheme';
+import { GlobalButton, GlobalLink } from '../Theme/GlobalTheme';
+import {
+	primary,
+	secondary,
+	tertiary,
+	textPrimary,
+	textSecondary,
+} from '../Theme/GlobalTheme';
 
 const useStyles = makeStyles({
 	imageSide: {
@@ -80,12 +87,12 @@ export default function SignUp() {
 						<NavigateButton>
 							<Typography variant='body1'>
 								Sudah punya akun?{' '}
-								<Link className={classes.link} to='/login'>
+								<GlobalLink sx={{ color: secondary }} to='/login'>
 									Masuk
-								</Link>
+								</GlobalLink>
 							</Typography>
 							<GlobalButton variant='contained' color='tertiary'>
-								<Typography variant='h4'>DAFTAR</Typography>
+								Daftar
 							</GlobalButton>
 						</NavigateButton>
 					</form>

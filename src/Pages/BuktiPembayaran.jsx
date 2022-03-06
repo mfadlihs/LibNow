@@ -2,6 +2,7 @@ import {
 	Container,
 	Content,
 	Heading,
+	Reminder,
 	Wrapper,
 } from '../Component/BuktiPembayaranComp';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -26,6 +27,7 @@ export default function BuktiPembayaran() {
 				<Heading></Heading>
 				<Wrapper>
 					<Content />
+					<Reminder />
 				</Wrapper>
 			</Container>
 		</Box>

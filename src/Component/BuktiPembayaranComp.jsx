@@ -14,7 +14,13 @@ const useStyles = makeStyles(theme => ({
 	content: {
 		display: 'grid',
 		gridTemplateColumns: 'auto 1fr',
-		gap: '12px 20px',
+		gap: '20px 12px',
+	},
+	bookDetails: {
+		display: 'grid',
+		gridTemplateColumns: 'auto 1fr',
+		alignContent: 'flex-start',
+		gap: '20px 9px',
 	},
 }));
 
@@ -59,6 +65,32 @@ export function Content() {
 			<Typography variant='h4'>Nama Peminjam:</Typography>
 			<Typography variant='h4'>Fadli Wong</Typography>
 			<BookImage src={bookImage} />
+			<BookDetails />
 		</Box>
+	);
+}
+
+export function BookDetails() {
+	return (
+		<Box className={classes().bookDetails}>
+			<Typography>Judul:</Typography>
+			<Typography>Good Habits, Bad Habits</Typography>
+			<Typography>Penulis:</Typography>
+			<Typography>Wendy Wood</Typography>
+			<Typography>ISBN:</Typography>
+			<Typography>63-100-09980</Typography>
+		</Box>
+	);
+}
+
+export function Reminder() {
+	return (
+		<Typography
+			sx={{
+				marginTop: '60px',
+			}}
+		>
+			Wajib dikembalikan sebelum 18 Maren 2022 pukul 12.45 WIB
+		</Typography>
 	);
 }

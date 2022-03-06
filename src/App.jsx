@@ -10,6 +10,9 @@ import { PencarianBuku } from './Pages/PencarianBuku';
 import DetailBuku from './Pages/DetailBuku';
 import SignUp from './Pages/SignUp';
 import BuktiPembayaran from './Pages/BuktiPembayaran';
+import Profile from './Pages/Profile';
+import AkunSaya from './Pages/Profile/AkunSaya';
+import RiwayatPinjam from './Pages/Profile/RiwayatPinjam';
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -25,6 +28,10 @@ function App() {
 				<Route path='/detail-buku/:buku' element={<DetailBuku />} />
 				<Route path='/profile/:profile' element={<Home />} />
 				<Route path='/bukti-pembayaran' element={<BuktiPembayaran />} />
+				<Route path='/profile' element={<Profile />}>
+					<Route path='' element={<AkunSaya />} />
+					<Route path='riwayat-pinjam' element={<RiwayatPinjam />} />
+				</Route>
 			</Routes>
 		</>
 	);

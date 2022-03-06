@@ -15,6 +15,7 @@ import { makeStyles } from '@mui/styles';
 // import { CardBook } from './HomeComp';
 import {
 	GlobalButton,
+	GlobalLink,
 	primary,
 	secondary,
 	tertiary,
@@ -68,21 +69,27 @@ export function SearchNav() {
 						},
 					}}
 				>
-					<Link to='/'>
+					<GlobalLink to='/'>
 						<img height='40px' src={icon} />
-					</Link>
+					</GlobalLink>
 					<form onSubmit={handleQuerySearch} autoComplete='off'>
 						<QuerySearch />
 					</form>
-					<GlobalButton variant='contained' color='tertiary'>
-						rak buku
-					</GlobalButton>
-					<GlobalButton variant='contained' color='tertiary'>
-						Perpustakaan
-					</GlobalButton>
-					<GlobalButton variant='contained' color='secondary'>
-						Masuk
-					</GlobalButton>
+					<GlobalLink to='/search'>
+						<GlobalButton variant='contained' color='tertiary'>
+							rak buku
+						</GlobalButton>
+					</GlobalLink>
+					<GlobalLink to='/daftar-perpustakaan'>
+						<GlobalButton variant='contained' color='tertiary'>
+							Perpustakaan
+						</GlobalButton>
+					</GlobalLink>
+					<GlobalLink to='/login'>
+						<GlobalButton variant='contained' color='secondary'>
+							Masuk
+						</GlobalButton>
+					</GlobalLink>
 				</Toolbar>
 			</AppBar>
 			<Box
