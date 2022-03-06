@@ -60,7 +60,6 @@ export default function SignUp() {
 							Username
 						</Typography>
 						<InputForm
-							type='email'
 							variant='outlined'
 							fullWidth
 							placeholder='Masukkan username'
@@ -70,7 +69,7 @@ export default function SignUp() {
 							Email/No.Hp
 						</Typography>
 						<InputForm
-							type='password'
+							type='email'
 							variant='outlined'
 							fullWidth
 							placeholder='Masukkan e-mail atau no.Hp'
