@@ -7,6 +7,8 @@ export const tertiary = '#F8BC61';
 export const complementary1 = '#FFF';
 export const complementary2 = '#001E1D';
 export const complementary3 = '#7B8284';
+export const textPrimary = '#000';
+export const textSecondary = '#7B8284';
 
 export const Theme = createTheme({
 	palette: {
@@ -23,7 +25,7 @@ export const Theme = createTheme({
 			main: '#fff',
 		},
 		complementary2: {
-			main: '#001E1D',
+			main: '#000000',
 		},
 		complementary3: {
 			main: '#7B8284',

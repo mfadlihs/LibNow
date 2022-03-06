@@ -2,10 +2,10 @@ import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import {
 	Content,
-	DetailBukuNav,
 	Details,
 	Heading,
 	ImageBook,
+	ImageBookContainer,
 	Judul,
 	Pinjam,
 	Rating,
@@ -22,9 +22,11 @@ export default function DetailBuku() {
 
 	return (
 		<Box className={classes.container}>
-			<DetailBukuNav />
+			<SearchNav />
 			<Content>
-				<ImageBook />
+				<ImageBookContainer>
+					<ImageBook />
+				</ImageBookContainer>
 				<Details>
 					<Heading>
 						<Judul />

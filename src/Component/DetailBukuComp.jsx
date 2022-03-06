@@ -1,11 +1,31 @@
-import { AppBar, Box, Toolbar, Typography, Zoom } from '@mui/material';
+import {
+	AppBar,
+	autocompleteClasses,
+	Box,
+	Toolbar,
+	Typography,
+	Zoom,
+	FormControl,
+	RadioGroup,
+	FormLabel,
+	Radio,
+	FormControlLabel,
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/system';
 import { QuerySearch } from './PencarianBukuComp';
 import icon from '../Assets/Images/icon.png';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import { useRef, useState } from 'react';
-import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
+import { useEffect, useRef, useState } from 'react';
+import {
+	primary,
+	secondary,
+	tertiary,
+	textPrimary,
+	textSecondary,
+} from '../Theme/GlobalTheme';
+import bookImage from '../Assets/Images/goodHabits.jpg';
+import StarIcon from '@mui/icons-material/Star';
 
 const useStyles = makeStyles(theme => ({
 	// toolbar: theme.mixins.toolbar,
@@ -13,60 +33,112 @@ const useStyles = makeStyles(theme => ({
 		padding: '8px 0',
 	},
 	content: {
-		paddingRight: 70,
-		paddingLeft: 70,
+		paddingRight: 62,
+		paddingLeft: 62,
 		display: 'flex',
 		justifyContent: 'space-between',
-	},
-	imageBook: {
-		aspectRatio: '3 / 4',
-		backgroundColor: secondaryColor,
-		backgroundImage: `url(${icon})`,
-		backgroundRepeat: 'no-repeat',
-		width: '248px',
-		backgroundPosition: 'center',
+		alignItems: 'flex-start',
 	},
 	pinjam: {
-		width: 374,
-		backgroundColor: secondaryColor,
+		width: 375,
+		minHeight: 328,
+		padding: '30px',
+		backgroundColor: '#f2f2f2',
+		boxShadow: '0px 0px 10px 0px #00000040',
 	},
 	details: {
-		width: 567,
-	},
-	heading: {
-		display: 'flex',
-		justifyContent: 'end',
-		marginBottom: 34,
-	},
-	rating: {
-		// float: 'right',
+		width: 607,
 	},
 	judul: {
 		flexGrow: 1,
 	},
 	navSection: {
 		display: 'flex',
-		backgroundColor: secondaryColor,
+		backgroundColor: theme.palette.complementary1.main,
 		marginBottom: 20,
 	},
 	bodySection: {
-		minHeight: 160,
-		padding: '10px 25px',
-		backgroundColor: secondaryColor,
+		paddingTop: 20,
 	},
 }));
+
+const classes = props => {
+	return useStyles(props);
+};
+
+export function Content({ children }) {
+	return <Box className={classes().content}>{children}</Box>;
+}
+
+export const ImageBookContainer = styled(Box)(theme => ({
+	padding: '10px 20px',
+	backgroundColor: primary,
+	borderRadius: '20px',
+}));
+
+export const ImageBook = styled(Box)({
+	aspectRatio: '3/4',
+	backgroundImage: `url(${bookImage})`,
+	backgroundRepeat: 'no-repeat',
+	backgroundSize: 'cover',
+	height: '329px',
+});
+
+export function Details({ children }) {
+	return <Box className={classes().details}>{children}</Box>;
+}
+
+// =========== Untuk heading nya ==========
+export const Heading = styled(Box)({
+	display: 'flex',
+	justifyContent: 'end',
+	marginBottom: 12,
+});
+
+export function Judul(props) {
+	return (
+		<Box className={classes().judul}>
+			<Typography variant='h3' gutterBottom>
+				Good Habits, Bad Habits
+			</Typography>
+			<Typography color='textSecondary'>Wendy Wood</Typography>
+		</Box>
+	);
+}
+export function Rating(props) {
+	return (
+		<Box sx={{ position: 'relative', top: '5px' }} className={classes().rating}>
+			{[1, 2, 3, 4, 5].map((i, index) => (
+				<StarIcon color='tertiary' key={index} />
+			))}
+		</Box>
+	);
+}
+
+// ============ Untuk section di bagian detail ===
+export function Section() {
+	const [sinopsis, setSinopsis] = useState(false);
+
+	return (
+		<Box>
+			<NavSection sinopsis={sinopsis} setSinopsis={setSinopsis} />
+			<BodySection sinopsis={sinopsis} setSinopsis={setSinopsis} />
+		</Box>
+	);
+}
 
 const NavButton = styled(Box)(props => ({
 	flexBasis: '50%',
 	padding: '16px',
 	textAlign: 'center',
 	userSelect: 'none',
-	color: !props.active && primaryColor,
+	color: !props.active && textSecondary,
 	position: 'relative',
 	'&:hover': !props.active && {
-		backgroundColor: `${primaryColor}40`,
+		backgroundColor: `${primary}98`,
 		transition: 'ease-in-out .5s',
 		cursor: 'pointer',
+		color: `${textPrimary}97`,
 	},
 	'&::before': {
 		content: '""',
@@ -96,97 +168,6 @@ const NavButton = styled(Box)(props => ({
 		  }
 		: {},
 }));
-
-const classes = props => {
-	return useStyles(props);
-};
-
-export function DetailBukuNav() {
-	return (
-		<>
-			<AppBar
-				sx={{}}
-				className={classes().nav}
-				position='fixed'
-				color='tersier'
-			>
-				<Toolbar
-					sx={{
-						justifyContent: 'space-between',
-						['@media(min-width : 1200px)']: {
-							paddingRight: '60px',
-							paddingLeft: '60px',
-						},
-					}}
-				>
-					<Typography variant='h1'>Logo</Typography>
-					<Typography variant='h1'>Detail Buku</Typography>
-					<form autoComplete='off'>
-						<QuerySearch />
-					</form>
-					<Typography variant='h1'>Perpustakaan</Typography>
-					<Typography variant='h1'>Masuk</Typography>
-				</Toolbar>
-			</AppBar>
-			<Box
-				sx={{
-					marginBottom: '52px',
-				}}
-				className={classes().toolbar}
-			/>
-		</>
-	);
-}
-
-export function Content({ children }) {
-	return <Box className={classes().content}>{children}</Box>;
-}
-
-export function ImageBook() {
-	return <Box className={classes().imageBook} />;
-}
-
-export function Details({ children }) {
-	return <Box className={classes().details}>{children}</Box>;
-}
-
-// =========== Untuk heading nya ==========
-export function Heading({ children }) {
-	return <Box className={classes().heading}>{children}</Box>;
-}
-
-export function Judul(props) {
-	return (
-		<Box className={classes().judul}>
-			<Typography variant='h1' gutterBottom>
-				Judul Buku
-			</Typography>
-			<Typography variant='h3'>Penulis</Typography>
-		</Box>
-	);
-}
-
-export function Rating(props) {
-	return (
-		<Box className={classes().rating}>
-			{[1, 2, 3, 4, 5].map((i, index) => (
-				<StarBorderOutlinedIcon fontSize='large' key={index} />
-			))}
-		</Box>
-	);
-}
-
-// ============ Untuk section di bagian detail ===
-export function Section() {
-	const [sinopsis, setSinopsis] = useState(false);
-
-	return (
-		<Box>
-			<NavSection sinopsis={sinopsis} setSinopsis={setSinopsis} />
-			<BodySection sinopsis={sinopsis} setSinopsis={setSinopsis} />
-		</Box>
-	);
-}
 
 function NavSection(props) {
 	const { sinopsis, setSinopsis } = props;
@@ -235,16 +216,31 @@ function BodySection(props) {
 function DetailSection({ sinopsis }) {
 	return (
 		<Zoom in={true}>
-			<Box className={classes().bodySection}>
-				<Typography variant='h3' gutterBottom>
-					ISBN :
-				</Typography>
-				<Typography variant='h3' gutterBottom>
-					Kategori :
-				</Typography>
-				<Typography variant='h3' gutterBottom>
-					Jumlah Stok :
-				</Typography>
+			<Box sx={{ display: 'flex' }} className={classes().bodySection}>
+				<Box sx={{ flexBasis: '40%' }}>
+					<Typography variant='body2' gutterBottom color='textSecondary'>
+						ISBN
+					</Typography>
+					<Typography sx={{ marginBottom: '20px' }} gutterBottom>
+						978-602-06-3839-3
+					</Typography>
+					<Typography color='textSecondary' gutterBottom variant='body2'>
+						Jumlah Stok
+					</Typography>
+					<Typography>5 Buah</Typography>
+				</Box>
+				<Box sx={{ flexBasis: '60%' }}>
+					<Typography variant='body2' color='textSecondary' gutterBottom>
+						Jumlah Stok
+					</Typography>
+					<Typography sx={{ marginBottom: '20px' }}>
+						Gramedia Pustaka Utama
+					</Typography>
+					<Typography variant='body2' color='textSecondary' gutterBottom>
+						Bahasa
+					</Typography>
+					<Typography sx={{ marginBottom: '20px' }}>Indonesia</Typography>
+				</Box>
 			</Box>
 		</Zoom>
 	);
@@ -254,8 +250,31 @@ function SinopsisSection({ sinopsis }) {
 	return (
 		<Zoom in={true}>
 			<Box className={classes().bodySection}>
-				<Typography variant='h3' gutterBottom>
-					Sinopsis :
+				<Typography variant='body2' align='justify'>
+					Kita menghabiskan 43% hari kita melakukan tindakan tanpamemikirkannya.
+					Cara kita merespons orang dan membawa diri dalam rapat, apa yang kita
+					beli, serta kapan dan bagaimana kita berolahraga, makan,dan
+					minum—semua itu kita laku-kan tanpa sadar sebagai hasil darikebiasaan.
+					Namun, ketika ingin mengubah diri, kita berharap diri sadarkita,
+					keteguhan dan niat kita, cukup untuk menghasilkan perubahan
+					yangpositif. Itulah sebabnya, kita hampir selalu gagal.
+				</Typography>
+				<Typography variant='body2' align='justify'>
+					Lalu bagaimana kalau kita bisa mengasah kekuatan luar biasa pikiran
+					bawah sadar, yang sudah menentukan begitu banyak tindakan kita, agar
+					kita benar-benar men-capai sasaran yang kita tetapkan?
+				</Typography>
+				<Typography variant='body2' align='justify'>
+					Berdasarkan penelitian selama tiga dekade, Wendy Wood menunjukkan—dari
+					segi ilmiah yang menarik—bagaimana kita membentuk kebiasaan dan
+					menawarkan cara memanfaatkan kebiasaan itu untuk melakukan perubahan.
+					Good Habits, Bad Habits yang merupakan perpaduan dari ilmu saraf,
+					studi kasus, dan percobaan di laboratoriumnya adalah buku yang
+					menyeluruh, mudah dipahami, dan sangat praktis, yang akan mengubah
+					cara pikir Anda tentang hampir segala aspek kehidupan. Kekuatan tekad
+					saja tidaklah cukup bila Anda ingin mencapai kehidupan yang Anda
+					impikan. Buku ini menawarkan harapan nyata bagi Anda yang ingin
+					melakukan perubahan positif.
 				</Typography>
 			</Box>
 		</Zoom>
@@ -264,5 +283,51 @@ function SinopsisSection({ sinopsis }) {
 
 // ============== Opsi untuk pinjam ============
 export function Pinjam() {
-	return <Box className={classes().pinjam}>INi untuk minjem bukunya</Box>;
+	const [value, setValue] = useState('');
+
+	const radioHandler = e => {
+		setValue(e.target.value);
+	};
+
+	useEffect(() => {
+		console.log(value);
+	}, [value]);
+
+	return (
+		<Box className={classes().pinjam}>
+			<Typography
+				sx={{ marginBottom: '16px' }}
+				variant='h4'
+				color='textSecondary'
+			>
+				Mau pinjam?
+			</Typography>
+			{/* <Typography>Pilih perpustakaan:</Typography> */}
+			<FormControl>
+				<Typography gutterBottom>Pilih perpustakaan: </Typography>
+				<RadioGroup
+					color='complementary2'
+					aria-labelledby='demo-radio-buttons-group-label'
+					name='radio-buttons-group'
+					onChange={radioHandler}
+				>
+					<FormControlLabel
+						value='Perpustakaan Kota Malang'
+						control={<Radio color='complementary2' />}
+						label='Perpustakaan Kota Malang'
+					/>
+					<FormControlLabel
+						value='Perpustakaan Asri'
+						control={<Radio color='complementary2' />}
+						label='Perpustakaan Asri'
+					/>
+					<FormControlLabel
+						value='Perpustakaan Cherry'
+						control={<Radio color='complementary2' />}
+						label='Perpustakaan Cherry'
+					/>
+				</RadioGroup>
+			</FormControl>
+		</Box>
+	);
 }
