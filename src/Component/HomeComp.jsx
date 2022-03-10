@@ -66,19 +66,71 @@ const classes = () => {
 // ============================================
 
 const NavInside = styled(Toolbar)({
-	['@media(min-width : 601px)']: {
+	['@media(min-width : 901px)']: {
 		paddingRight: 60,
 		paddingLeft: 60,
 	},
 });
 
-const ButtonNav = styled(Button)({
-	textTransform: 'none',
-	marginLeft: '88px',
-});
+// const ButtonNav = styled(Button)({
+// 	textTransform: 'none',
+// 	marginLeft: '88px',
+// });
 
 const NavSide = styled(Box)({
 	flexGrow: 1,
+});
+
+const ButtonNav = styled(GlobalButton)({
+	['@media(min-width : 901px)']: {
+		marginLeft: '60px',
+	},
+});
+
+const NavResponsive = styled(Box)({
+	display: 'none',
+	['@media(min-width : 901px)']: {
+		display: 'block',
+	},
+});
+
+const HamburgerContainer = styled(Box)({
+	display: 'none',
+	position: 'relative',
+	['@media(max-width : 901px)']: {
+		display: 'block',
+	},
+});
+
+const HamburgerButton = styled(Box)({
+	width: '25px',
+	height: '5px',
+	borderRadius: '10px',
+	backgroundColor: secondary,
+	transition: 'all 0.5s ease-in-out',
+
+	'&::after': {
+		position: 'absolute',
+		content: '""',
+		display: 'block',
+		top: 8,
+		width: '25px',
+		borderRadius: '10px',
+		height: '5px',
+		backgroundColor: secondary,
+		transition: 'all 0.5s ease-in-out',
+	},
+	'&::before': {
+		position: 'absolute',
+		content: '""',
+		display: 'block',
+		top: -8,
+		width: '25px',
+		borderRadius: '10px',
+		height: '5px',
+		backgroundColor: secondary,
+		transition: 'all 0.5s ease-in-out',
+	},
 });
 
 export function Nav() {
@@ -94,31 +146,26 @@ export function Nav() {
 						</GlobalLink>
 					</NavSide>
 
-					<Box>
+					<NavResponsive>
 						<GlobalLink to='/search'>
 							<GlobalButton color='tertiary' variant='contained'>
 								rak buku
 							</GlobalButton>
 						</GlobalLink>
 						<GlobalLink to='/daftar-perpustakaan'>
-							<GlobalButton
-								sx={{ marginLeft: '60px' }}
-								color='tertiary'
-								variant='contained'
-							>
+							<ButtonNav color='tertiary' variant='contained'>
 								perpustakaan
-							</GlobalButton>
+							</ButtonNav>
 						</GlobalLink>
 						<GlobalLink to='login'>
-							<GlobalButton
-								sx={{ marginLeft: '60px' }}
-								color='secondary'
-								variant='contained'
-							>
+							<ButtonNav color='secondary' variant='contained'>
 								MASUK
-							</GlobalButton>
+							</ButtonNav>
 						</GlobalLink>
-					</Box>
+					</NavResponsive>
+					<HamburgerContainer>
+						<HamburgerButton />
+					</HamburgerContainer>
 				</NavInside>
 			</AppBar>
 			<div className={`${classes.toolbar} ${classes.toolbar2}`}></div>
