@@ -20,6 +20,8 @@ import {
 	textPrimary,
 	textSecondary,
 } from '../Theme/GlobalTheme';
+import { useEffect } from 'react';
+import { libAPI } from '../Config/api';
 
 const useStyles = makeStyles({
 	imageSide: {

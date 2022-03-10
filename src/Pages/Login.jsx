@@ -20,6 +20,8 @@ import {
 	textPrimary,
 	textSecondary,
 } from '../Theme/GlobalTheme';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const useStyles = makeStyles({
 	imageSide: {
@@ -40,6 +42,8 @@ const useStyles = makeStyles({
 
 export default function Login() {
 	const classes = useStyles();
+
+	const [forms, setForms] = useState({ email: '', password: '' });
 
 	return (
 		<Container className='container'>

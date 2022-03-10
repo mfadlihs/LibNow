@@ -1,5 +1,7 @@
 import { Button, Grid, InputBase, OutlinedInput } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import axios from 'axios';
+import { useEffect } from 'react';
 import {
 	ButtonForm,
 	Contact,
@@ -13,6 +15,7 @@ import {
 	Nav,
 	Peminjaman,
 } from '../Component/HomeComp';
+import { libAPI } from '../Config/api';
 
 const primaryColor = '#898989';
 const secondaryColor = '#E5E5E5';
