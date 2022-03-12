@@ -4,14 +4,15 @@ import {
 	Content,
 	Details,
 	Heading,
-	ImageBook,
-	ImageBookContainer,
+	// ImageBook,
+	// ImageBookContainer,
 	Judul,
 	Pinjam,
 	Rating,
 	Section,
 } from '../Component/DetailBukuComp';
-import { SearchNav } from '../Component/PencarianBukuComp';
+import { ImageBook } from '../Layout/ImageBook';
+import { SearchNav } from '../Layout/SearchNav';
 
 const useStyles = makeStyles(theme => ({
 	container: {},
@@ -24,9 +25,7 @@ export default function DetailBuku() {
 		<Box className={classes.container}>
 			<SearchNav />
 			<Content>
-				<ImageBookContainer>
-					<ImageBook />
-				</ImageBookContainer>
+				<ImageBook />
 				<Details>
 					<Heading>
 						<Judul />

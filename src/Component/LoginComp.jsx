@@ -5,10 +5,11 @@ import iconLogin from '../Assets/Images/iconLogin.png';
 import owl from '../Assets/Images/owlLogin.png';
 import { primary, secondary, tertiary } from '../Theme/GlobalTheme';
 
-export const Container = styled('div')({
+export const Container = styled(Box)({
 	display: 'flex',
 	height: '100vh',
 });
+``;
 
 const useStyles = makeStyles({
 	iconLogin: {},
@@ -29,20 +30,32 @@ const classes = () => {
 // ===================================================
 export function ImageSide() {
 	return (
-		<Box className={classes().imageSide}>
-			<Logo src={iconLogin} />
-			<Owl src={owl} />
+		<Box
+			display={['none', 'block']}
+			flexBasis={['20%', '20%', '35%']}
+			className={classes().imageSide}
+		>
+			<Logo
+				display={['none', 'none', 'block']}
+				component='img'
+				src={iconLogin}
+			/>
+			<Owl
+				display={['none', 'none', 'none', 'block']}
+				component='img'
+				src={owl}
+			/>
 		</Box>
 	);
 }
 
-const Logo = styled('img')({
+const Logo = styled(Box)({
 	position: 'absolute',
 	top: '25%',
 	left: '136px',
 });
 
-const Owl = styled('img')({
+const Owl = styled(Box)({
 	position: 'absolute',
 	right: '-25%',
 	top: '25%',
@@ -51,7 +64,7 @@ const Owl = styled('img')({
 // ===================================================
 // ============== Bagian Sebelah kanan ===============
 // ===================================================
-export const Wrapper = styled('div')({
+export const Wrapper = styled(Box)({
 	flexBasis: '65%',
 	display: 'flex',
 	justifyContent: 'center',
@@ -59,7 +72,7 @@ export const Wrapper = styled('div')({
 	padding: '255px 192px',
 });
 
-export const WrapperLogin = styled('div')({
+export const WrapperLogin = styled(Box)({
 	width: '100%',
 });
 
@@ -75,7 +88,7 @@ export const InputForm = styled(TextField)({
 	marginBottom: '37px',
 });
 
-export const NavigateButton = styled('div')({
+export const NavigateButton = styled(Box)({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'space-between',

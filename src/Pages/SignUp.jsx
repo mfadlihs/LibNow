@@ -9,7 +9,7 @@ import {
 	Header,
 	NavigateButton,
 } from '../Component/LoginComp';
-import { Label } from '@mui/icons-material';
+import { Label, LibraryAddOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { InputForm } from '../Component/LoginComp';
 import { GlobalButton, GlobalLink } from '../Theme/GlobalTheme';
@@ -20,8 +20,10 @@ import {
 	textPrimary,
 	textSecondary,
 } from '../Theme/GlobalTheme';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { libAPI } from '../Config/api';
+import { LoginLoading } from './Login';
+import { useAuth } from '../Config/Auth';
 
 const useStyles = makeStyles({
 	imageSide: {
@@ -40,15 +42,67 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function SignUp() {
+export default function SignUp({ setisLogin }) {
+	const { SetAndGetToken } = useAuth();
+
 	const classes = useStyles();
+
+	const [forms, setForms] = useState({
+		emailorphonenumber: '',
+		password: '',
+		username: '',
+	});
+
+	const [isLoading, setIsLoading] = useState(false);
+	const [isError, setIsError] = useState(false);
+
+	const handleSignup = async e => {
+		e.preventDefault();
+		setIsLoading(true);
+		isError && setIsError(false);
+		try {
+			const SignupRes = await libAPI.post('/user/signup', {
+				...forms,
+			});
+			setIsLoading(false);
+			console.log(SignupRes.data);
+
+			// Jika berhasil signup, maka post request untuk login
+			const loginRes = await libAPI.post('/user/login', {
+				emailorphonenumber: forms.emailorphonenumber,
+				password: forms.password,
+			});
+
+			console.log(loginRes.data);
+
+			// ambil token dan usernamenya
+			const token = loginRes.data.Token;
+			const id = loginRes.data.id;
+
+			SetAndGetToken(token, id);
+			navigate('/');
+		} catch (error) {
+			setTimeout(() => {
+				setTimeout(() => {
+					setIsError(true);
+					setIsLoading(false);
+					setTimeout(() => {
+						setIsError(false);
+					}, 3000);
+				}, 1500);
+			});
+		}
+	};
 
 	return (
 		<Container className='container'>
 			<ImageSide />
-			<Wrapper>
+			<Wrapper
+				px={['25px', '50px', '50px', '192px']}
+				flexBasis={['100%', '80%', '65%']}
+			>
 				<WrapperLogin>
-					<form autoComplete='off'>
+					<form onSubmit={handleSignup} id='signup' autoComplete='off'>
 						<Header sx={{ marginBottom: '47px' }}>
 							<Typography
 								className={classes.header}
@@ -66,25 +120,48 @@ export default function SignUp() {
 							fullWidth
 							placeholder='Masukkan username'
 							color='primary'
+							required
+							onChange={e => {
+								setForms(() => ({
+									...forms,
+									username: e.target.value,
+								}));
+							}}
 						/>
 						<Typography gutterBottom variant='h4'>
 							Email/No.Hp
 						</Typography>
 						<InputForm
-							type='email'
 							variant='outlined'
 							fullWidth
+							type='email'
+							required
 							placeholder='Masukkan e-mail atau no.Hp'
+							onChange={e => {
+								setForms(() => ({
+									...forms,
+									emailorphonenumber: e.target.value,
+								}));
+							}}
 						/>
 						<Typography gutterBottom variant='h4'>
 							Password
 						</Typography>
 						<InputForm
 							type='password'
+							required
 							variant='outlined'
 							fullWidth
 							placeholder='Masukkan password'
+							onChange={e => {
+								setForms(() => ({
+									...forms,
+									password: e.target.value,
+								}));
+							}}
 						/>
+						{isLoading && <LoginLoading />}
+						{isError && <SingupError />}
 						<NavigateButton>
 							<Typography variant='body1'>
 								Sudah punya akun?{' '}
@@ -92,7 +169,12 @@ export default function SignUp() {
 									Masuk
 								</GlobalLink>
 							</Typography>
-							<GlobalButton variant='contained' color='tertiary'>
+							<GlobalButton
+								type='submit'
+								form='signup'
+								variant='contained'
+								color='tertiary'
+							>
 								Daftar
 							</GlobalButton>
 						</NavigateButton>
@@ -102,3 +184,11 @@ export default function SignUp() {
 		</Container>
 	);
 }
+
+const SingupError = () => {
+	return (
+		<Typography marginBottom='15px' textAlign='center' color='error'>
+			Password length must be between 8-16 !
+		</Typography>
+	);
+};

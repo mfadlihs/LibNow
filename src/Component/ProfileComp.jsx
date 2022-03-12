@@ -33,7 +33,7 @@ export const Container = styled(Box)({
 	display: 'flex',
 	alignItems: 'flex-start',
 	gap: '60px',
-	minHeight: '100vh',
+	// minHeight: '100vh',
 });
 
 export function AccountNav() {

@@ -10,6 +10,7 @@ import {
 	FormLabel,
 	Radio,
 	FormControlLabel,
+	Grid,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/system';
@@ -18,6 +19,7 @@ import icon from '../Assets/Images/icon.png';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { useEffect, useRef, useState } from 'react';
 import {
+	GlobalButton,
 	primary,
 	secondary,
 	tertiary,
@@ -33,21 +35,24 @@ const useStyles = makeStyles(theme => ({
 		padding: '8px 0',
 	},
 	content: {
-		paddingRight: 62,
-		paddingLeft: 62,
-		display: 'flex',
+		paddingRight: 40,
+		paddingLeft: 40,
 		justifyContent: 'space-between',
 		alignItems: 'flex-start',
+		paddingBottom: 40,
 	},
 	pinjam: {
-		width: 375,
+		width: 'auto',
+		display: 'flex',
+		flexDirection: 'column',
 		minHeight: 328,
+		position: 'relative',
 		padding: '30px',
 		backgroundColor: '#f2f2f2',
 		boxShadow: '0px 0px 10px 0px #00000040',
 	},
 	details: {
-		width: 607,
+		// width: 607,
 	},
 	judul: {
 		flexGrow: 1,
@@ -67,10 +72,16 @@ const classes = props => {
 };
 
 export function Content({ children }) {
-	return <Box className={classes().content}>{children}</Box>;
+	return (
+		<Box paddingTop='50px'>
+			<Grid container columnSpacing='50px' className={classes().content}>
+				{children}
+			</Grid>
+		</Box>
+	);
 }
 
-export const ImageBookContainer = styled(Box)(theme => ({
+export const ImageBookContainer = styled(Grid)(theme => ({
 	padding: '10px 20px',
 	backgroundColor: primary,
 	borderRadius: '20px',
@@ -85,7 +96,13 @@ export const ImageBook = styled(Box)({
 });
 
 export function Details({ children }) {
-	return <Box className={classes().details}>{children}</Box>;
+	return (
+		<Grid item lg={6} md={8} xs={12}>
+			<Box marginTop={['30px', '30px', '0', '0']} className={classes().details}>
+				{children}
+			</Box>
+		</Grid>
+	);
 }
 
 // =========== Untuk heading nya ==========
@@ -217,7 +234,7 @@ function DetailSection({ sinopsis }) {
 	return (
 		<Zoom in={true}>
 			<Box sx={{ display: 'flex' }} className={classes().bodySection}>
-				<Box sx={{ flexBasis: '40%' }}>
+				<Box sx={{ flexBasis: '50%' }}>
 					<Typography variant='body2' gutterBottom color='textSecondary'>
 						ISBN
 					</Typography>
@@ -229,7 +246,7 @@ function DetailSection({ sinopsis }) {
 					</Typography>
 					<Typography>5 Buah</Typography>
 				</Box>
-				<Box sx={{ flexBasis: '60%' }}>
+				<Box sx={{ flexBasis: '50%' }}>
 					<Typography variant='body2' color='textSecondary' gutterBottom>
 						Jumlah Stok
 					</Typography>
@@ -294,40 +311,58 @@ export function Pinjam() {
 	}, [value]);
 
 	return (
-		<Box className={classes().pinjam}>
-			<Typography
-				sx={{ marginBottom: '16px' }}
-				variant='h4'
-				color='textSecondary'
+		<Grid item lg={3} xs={12}>
+			<Box
+				marginTop={['30px', '30px', '30px', '']}
+				className={classes().pinjam}
 			>
-				Mau pinjam?
-			</Typography>
-			{/* <Typography>Pilih perpustakaan:</Typography> */}
-			<FormControl>
-				<Typography gutterBottom>Pilih perpustakaan: </Typography>
-				<RadioGroup
-					color='complementary2'
-					aria-labelledby='demo-radio-buttons-group-label'
-					name='radio-buttons-group'
-					onChange={radioHandler}
-				>
-					<FormControlLabel
-						value='Perpustakaan Kota Malang'
-						control={<Radio color='complementary2' />}
-						label='Perpustakaan Kota Malang'
-					/>
-					<FormControlLabel
-						value='Perpustakaan Asri'
-						control={<Radio color='complementary2' />}
-						label='Perpustakaan Asri'
-					/>
-					<FormControlLabel
-						value='Perpustakaan Cherry'
-						control={<Radio color='complementary2' />}
-						label='Perpustakaan Cherry'
-					/>
-				</RadioGroup>
-			</FormControl>
-		</Box>
+				<ContentPinjam>
+					<Typography
+						sx={{ marginBottom: '16px' }}
+						variant='h4'
+						color='textSecondary'
+					>
+						Mau pinjam?
+					</Typography>
+					{/* <Typography>Pilih perpustakaan:</Typography> */}
+					<FormControl>
+						<Typography gutterBottom>Pilih perpustakaan: </Typography>
+						<RadioGroup
+							color='complementary2'
+							aria-labelledby='demo-radio-buttons-group-label'
+							name='radio-buttons-group'
+							onChange={radioHandler}
+						>
+							<FormControlLabel
+								value='Perpustakaan Kota Malang'
+								control={<Radio color='complementary2' />}
+								label='Perpustakaan Kota Malang'
+							/>
+							<FormControlLabel
+								value='Perpustakaan Asri'
+								control={<Radio color='complementary2' />}
+								label='Perpustakaan Asri'
+							/>
+							<FormControlLabel
+								value='Perpustakaan Cherry'
+								control={<Radio color='complementary2' />}
+								label='Perpustakaan Cherry'
+							/>
+						</RadioGroup>
+					</FormControl>
+				</ContentPinjam>
+				<PinjamButton variant='contained' color='tertiary'>
+					pinjam
+				</PinjamButton>
+			</Box>
+		</Grid>
 	);
 }
+
+const PinjamButton = styled(GlobalButton)({
+	width: '100%',
+});
+
+const ContentPinjam = styled(Box)({
+	flexGrow: 1,
+});

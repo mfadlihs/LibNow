@@ -1,12 +1,13 @@
 import { makeStyles } from '@mui/styles';
-import { CardLibrary } from '../Component/DaftarPerpustakaanComp';
 import {
 	Content,
 	Popular,
 	RatingTinggi,
 	Rekomendasi,
-	SearchNav,
 } from '../Component/PencarianBukuComp';
+import { Container } from '../Layout/Container';
+import Footer from '../Layout/Footer';
+import { SearchNav } from '../Layout/SearchNav';
 
 const useStyles = makeStyles({
 	container: {},
@@ -18,11 +19,17 @@ export function PencarianBuku() {
 	return (
 		<div className={classes.container}>
 			<SearchNav />
-			<Content>
+			<Container>
 				<Popular />
 				<Rekomendasi />
 				<RatingTinggi />
-			</Content>
+			</Container>
+			<Footer />
+			{/* <Content>
+				<Popular />
+				<Rekomendasi />
+				<RatingTinggi />
+			</Content> */}
 		</div>
 	);
 }

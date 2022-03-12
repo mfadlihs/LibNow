@@ -15,7 +15,7 @@ import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/system';
 import icon from '../Assets/Images/icon.png';
 import StarIcon from '@mui/icons-material/Star';
-import { Children } from 'react';
+import { Children, useState } from 'react';
 import {
 	GlobalButton,
 	GlobalLink,
@@ -25,9 +25,7 @@ import {
 } from '../Theme/GlobalTheme';
 import { Link } from 'react-router-dom';
 import cardImage from '../Assets/Images/cardImage.jpg';
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import jumbotron from '../Assets/Images/jumbotron.jpg';
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -42,18 +40,20 @@ const useStyles = makeStyles(theme => ({
 	toolbar2: {
 		marginBottom: '40px',
 	},
-	nav: {
-		padding: '8px 0',
-	},
+
 	button: {
 		textTransform: 'none',
 	},
 	jumbotron: {
-		marginBottom: '37px',
-		height: '274px',
-		backgroundColor: secondary,
+		height: 304,
+		// backgroundColor: secondary,
+		backgroundImage: `url(${jumbotron})`,
 		position: 'relative',
 		padding: '63px 77px',
+		backgroundRepeat: 'no-repeat',
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+		width: '100%',
 	},
 }));
 
@@ -61,129 +61,22 @@ const classes = () => {
 	return useStyles();
 };
 
-// ============================================
-// =================== Nav ====================
-// ============================================
-
-const NavInside = styled(Toolbar)({
-	['@media(min-width : 901px)']: {
-		paddingRight: 60,
-		paddingLeft: 60,
-	},
-});
-
-// const ButtonNav = styled(Button)({
-// 	textTransform: 'none',
-// 	marginLeft: '88px',
-// });
-
-const NavSide = styled(Box)({
-	flexGrow: 1,
-});
-
-const ButtonNav = styled(GlobalButton)({
-	['@media(min-width : 901px)']: {
-		marginLeft: '60px',
-	},
-});
-
-const NavResponsive = styled(Box)({
-	display: 'none',
-	['@media(min-width : 901px)']: {
-		display: 'block',
-	},
-});
-
-const HamburgerContainer = styled(Box)({
-	display: 'none',
-	position: 'relative',
-	['@media(max-width : 901px)']: {
-		display: 'block',
-	},
-});
-
-const HamburgerButton = styled(Box)({
-	width: '25px',
-	height: '5px',
-	borderRadius: '10px',
-	backgroundColor: secondary,
-	transition: 'all 0.5s ease-in-out',
-
-	'&::after': {
-		position: 'absolute',
-		content: '""',
-		display: 'block',
-		top: 8,
-		width: '25px',
-		borderRadius: '10px',
-		height: '5px',
-		backgroundColor: secondary,
-		transition: 'all 0.5s ease-in-out',
-	},
-	'&::before': {
-		position: 'absolute',
-		content: '""',
-		display: 'block',
-		top: -8,
-		width: '25px',
-		borderRadius: '10px',
-		height: '5px',
-		backgroundColor: secondary,
-		transition: 'all 0.5s ease-in-out',
-	},
-});
-
-export function Nav() {
-	const classes = useStyles();
-
-	return (
-		<>
-			<AppBar className={classes.nav} color='primary' position='fixed'>
-				<NavInside>
-					<NavSide>
-						<GlobalLink to='/'>
-							<img height='40px' src={icon} />
-						</GlobalLink>
-					</NavSide>
-
-					<NavResponsive>
-						<GlobalLink to='/search'>
-							<GlobalButton color='tertiary' variant='contained'>
-								rak buku
-							</GlobalButton>
-						</GlobalLink>
-						<GlobalLink to='/daftar-perpustakaan'>
-							<ButtonNav color='tertiary' variant='contained'>
-								perpustakaan
-							</ButtonNav>
-						</GlobalLink>
-						<GlobalLink to='login'>
-							<ButtonNav color='secondary' variant='contained'>
-								MASUK
-							</ButtonNav>
-						</GlobalLink>
-					</NavResponsive>
-					<HamburgerContainer>
-						<HamburgerButton />
-					</HamburgerContainer>
-				</NavInside>
-			</AppBar>
-			<div className={`${classes.toolbar} ${classes.toolbar2}`}></div>
-		</>
-	);
-}
-
 // Jumbotron ==============================
 
 export function Jumbotron() {
-	return <Box className={classes().jumbotron}></Box>;
+	return (
+		<Box
+			display={['none', 'none', 'none', 'block']}
+			className={classes().jumbotron}
+		></Box>
+	);
 }
 
 // =========================================
 // ============ Container ==================
 // =========================================
 
-export const Container = styled('div')({
+export const Container = styled(Box)({
 	padding: '0px 69px 66px',
 });
 
@@ -191,26 +84,22 @@ export const Container = styled('div')({
 // Card ===============================
 // ====================================
 
-const Cards = styled(Card)({
-	border: '2px solid #1A1A1A',
+const CardContainer = styled(Box)(props => ({
+	aspectRatio: '2 / 3',
+	width: '100%',
+	margin: 'auto',
 	borderRadius: '8px',
-});
+	boxShadow: '0px 0px 10px 0px #00000040',
+}));
 
 export function CardBook() {
 	return (
-		<Box
-			sx={{
-				padding: '20px 23px',
-				borderRadius: '8px',
-				boxShadow: '0px 0px 10px 0px #00000040',
-			}}
-		>
+		<CardContainer padding={['10px', '15px', '20px']}>
 			<Card sx={{ boxShadow: '0' }}>
 				<CardMedia
-					sx={{ marginBottom: '15px' }}
+					sx={{ marginBottom: '15px', aspectRatio: '2 / 3' }}
 					image={cardImage}
 					component='img'
-					height='493'
 				/>
 				<Box>
 					<Typography variant='h3' gutterBottom>
@@ -231,9 +120,14 @@ export function CardBook() {
 					<Typography variant='body2'>Perpustakaan Kota Malang, 2+</Typography>
 				</Box>
 			</Card>
-		</Box>
+		</CardContainer>
 	);
 }
+
+const CardWrapper = styled(Box)({
+	aspectRatio: '3 / 4',
+	width: 315,
+});
 
 // =========================================
 // ============ Content ====================
@@ -241,112 +135,16 @@ export function CardBook() {
 
 export function Content() {
 	return (
-		<Grid container rowSpacing='48px' columnSpacing='85px'>
+		<Grid container rowSpacing='48px' columnSpacing={['0px', '30px']}>
 			{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => {
 				return (
-					<Grid lg={4} item key={index}>
+					<Grid lg={4} md={6} sm={6} xs={12} item key={index}>
+						{/* <CardWrapper> */}
 						<CardBook />
+						{/* </CardWrapper> */}
 					</Grid>
 				);
 			})}
-		</Grid>
-	);
-}
-
-// ================ footer ==================
-
-export const Footer = styled(Grid)({
-	backgroundColor: primary,
-	padding: '81px 124px 56px',
-});
-
-export function FooterForm({ children }) {
-	return (
-		<Grid item lg={3.5}>
-			<form autoComplete='off'>
-				<Typography sx={{ marginBottom: '20px' }} variant='h4'>
-					Ada masukan untuk kami?
-				</Typography>
-				<InputForm placeholder='Nama' variant='outlined' fullWidth />
-				<InputForm placeholder='E-mail' variant='outlined' fullWidth />
-				<InputForm
-					placeholder='Feedback'
-					variant='outlined'
-					fullWidth
-					multiline
-					rows={4}
-				/>
-				<GlobalButton
-					sx={{ float: 'right' }}
-					variant='contained'
-					color='tertiary'
-				>
-					kirim
-				</GlobalButton>
-			</form>
-		</Grid>
-	);
-}
-
-export const InputForm = styled(TextField)({
-	backgroundColor: 'white',
-	borderRadius: '4px',
-	outline: '0px',
-	marginBottom: '17px',
-	'& input': {
-		padding: '12px 16px',
-	},
-	'& fieldset': {
-		border: '1px solid #b3b3b3',
-	},
-});
-export const ButtonForm = styled(Button)({
-	float: 'right',
-});
-
-export function Contact() {
-	return (
-		<Grid item lg={2.83}>
-			<Typography sx={{ marginBottom: '17px' }} variant='h4'>
-				Hubungi Kami
-			</Typography>
-			<FacebookRoundedIcon sx={{ marginRight: '15px' }} fontSize='large' />
-			<InstagramIcon sx={{ marginRight: '15px' }} fontSize='large' />
-			<TwitterIcon fontSize='large' />
-			<Box sx={{ marginTop: '20px' }}>
-				<img src={icon} height='28px' />
-			</Box>
-		</Grid>
-	);
-}
-
-const ListFooter = styled(Typography)({
-	marginBottom: '17px',
-});
-
-export function Peminjaman() {
-	return (
-		<Grid item lg={2.83}>
-			<Typography sx={{ marginBottom: '18px' }} variant='h4'>
-				Peminjaman
-			</Typography>
-			<ListFooter>Perpustakaan Penyedia</ListFooter>
-			<ListFooter>Daftar Buku</ListFooter>
-			<ListFooter>Peminjaman</ListFooter>
-			<ListFooter>Pengembalian</ListFooter>
-		</Grid>
-	);
-}
-
-export function Lainnya() {
-	return (
-		<Grid item lg={2.83}>
-			<Typography sx={{ marginBottom: '17px' }} variant='h4'>
-				Lainnya
-			</Typography>
-			<ListFooter>Syarat & Kebijakan</ListFooter>
-			<ListFooter>Kebijakan</ListFooter>
-			<ListFooter>Bantuan</ListFooter>
 		</Grid>
 	);
 }

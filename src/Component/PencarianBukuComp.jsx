@@ -12,7 +12,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-// import { CardBook } from './HomeComp';
+
 import {
 	GlobalButton,
 	GlobalLink,
@@ -23,9 +23,8 @@ import {
 import icon from '../Assets/Images/icon.png';
 import { Link } from 'react-router-dom';
 import cardImage from '../Assets/Images/cardImage.jpg';
-import StarIcon from '@mui/icons-material/Star';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
 import { styled } from '@mui/system';
+import { CardBook } from '../Layout/CardBook';
 
 const useStyles = makeStyles(theme => ({
 	toolbar: theme.mixins.toolbar,
@@ -38,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 		border: `2px solid ${theme.palette.tertiary.main}`,
 		padding: '2px 16px',
 		borderRadius: '4px',
-		width: '624px',
+		width: '500px',
 	},
 	content: {
 		padding: '0px 70px 70px',
@@ -51,6 +50,13 @@ const useStyles = makeStyles(theme => ({
 const classes = () => {
 	return useStyles();
 };
+
+const NavSide = styled(Box)(props => ({
+	display: 'flex',
+	justifyContent: 'space-between',
+	marginLeft: '30px',
+	flexGrow: 1,
+}));
 
 export function SearchNav() {
 	const handleQuerySearch = e => {
@@ -72,24 +78,26 @@ export function SearchNav() {
 					<GlobalLink to='/'>
 						<img height='40px' src={icon} />
 					</GlobalLink>
-					<form onSubmit={handleQuerySearch} autoComplete='off'>
-						<QuerySearch />
-					</form>
-					<GlobalLink to='/search'>
-						<GlobalButton variant='contained' color='tertiary'>
-							rak buku
-						</GlobalButton>
-					</GlobalLink>
-					<GlobalLink to='/daftar-perpustakaan'>
-						<GlobalButton variant='contained' color='tertiary'>
-							Perpustakaan
-						</GlobalButton>
-					</GlobalLink>
-					<GlobalLink to='/login'>
-						<GlobalButton variant='contained' color='secondary'>
-							Masuk
-						</GlobalButton>
-					</GlobalLink>
+					<NavSide display={['none', 'none', 'none', 'flex']}>
+						<form onSubmit={handleQuerySearch} autoComplete='off'>
+							<QuerySearch />
+						</form>
+						<GlobalLink to='/search'>
+							<GlobalButton variant='contained' color='tertiary'>
+								rak buku
+							</GlobalButton>
+						</GlobalLink>
+						<GlobalLink to='/daftar-perpustakaan'>
+							<GlobalButton variant='contained' color='tertiary'>
+								Perpustakaan
+							</GlobalButton>
+						</GlobalLink>
+						<GlobalLink to='/login'>
+							<GlobalButton variant='contained' color='secondary'>
+								Masuk
+							</GlobalButton>
+						</GlobalLink>
+					</NavSide>
 				</Toolbar>
 			</AppBar>
 			<Box
@@ -102,12 +110,21 @@ export function SearchNav() {
 	);
 }
 
+export const SearchInput = styled(Box)(props => ({
+	display: 'flex',
+	alignItems: 'center',
+	border: `2px solid ${tertiary}`,
+	padding: '2px 16px',
+	borderRadius: '4px',
+	width: '500px',
+}));
+
 export function QuerySearch() {
 	return (
-		<Box className={classes().SearchInput}>
+		<SearchInput>
 			<InputBase fullWidth placeholder='Search' />
 			<SearchIcon color='gray' sx={{ marginLeft: '10px' }} fontSize='small' />
-		</Box>
+		</SearchInput>
 	);
 }
 
@@ -118,6 +135,8 @@ export function Content({ children }) {
 const Heading = styled(Box)({
 	display: 'flex',
 	justifyContent: 'space-between',
+	alignItems: 'center',
+	marginBottom: 30,
 });
 
 // ============= Popular =====================
@@ -126,7 +145,7 @@ export function Popular() {
 	return (
 		<Box className={classes().section}>
 			<Heading>
-				<Typography sx={{ marginBottom: '31px' }} variant='h3'>
+				<Typography flexGrow={1} variant='h3'>
 					Paling banyak dipinjam
 				</Typography>
 				<Typography variant='h4'>Lihat Semua</Typography>
@@ -142,9 +161,7 @@ export function RatingTinggi() {
 	return (
 		<Box className={classes().section}>
 			<Heading>
-				<Typography sx={{ marginBottom: '31px' }} variant='h3'>
-					Rating Tinggi
-				</Typography>
+				<Typography variant='h3'>Rating Tinggi</Typography>
 				<Typography variant='h4'>Lihat Semua</Typography>
 			</Heading>
 			<Cards />
@@ -158,46 +175,11 @@ export function Rekomendasi() {
 	return (
 		<Box className={classes().section}>
 			<Heading>
-				<Typography sx={{ marginBottom: '31px' }} variant='h3'>
-					Kami Merekomendasikan Untukmu
-				</Typography>
+				<Typography variant='h3'>Kami Merekomendasikan Untukmu</Typography>
 				<Typography variant='h4'>Lihat Semua</Typography>
 			</Heading>
 			<Cards />
 		</Box>
-	);
-}
-
-// ==================== CardBook =====================
-// card yg isinya buku
-
-function CardBook() {
-	return (
-		<Card
-			sx={{ borderRadius: '20px', boxShadow: '0px 0px 10px 0px #00000040' }}
-		>
-			<CardMedia component='img' src={cardImage} height='390px' />
-			<CardContent>
-				<Typography variant='h3' gutterBottom>
-					Kitab Kawin
-				</Typography>
-				<Typography gutterBottom color='textSecondary'>
-					Laksmi Pamuntjak
-				</Typography>
-				<Box>
-					{[1, 1, 1, 1, 0.5].map((i, index) => {
-						if (i === 1) {
-							return <StarIcon color='tertiary' />;
-						} else if (i === 0.5) {
-							return <StarHalfIcon color='tertiary' />;
-						}
-					})}
-				</Box>
-				<Typography color='textSecondary' variant='body2'>
-					Tersedia di Perpustakaan Malang, 6+
-				</Typography>
-			</CardContent>
-		</Card>
 	);
 }
 
@@ -206,8 +188,8 @@ function Cards() {
 		<Grid container spacing='44px'>
 			{[1, 2, 3, 4].map((i, index) => {
 				return (
-					<Grid key={index} item lg={3}>
-						<CardBook sx={{ padding: '0' }} />
+					<Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+						<CardBook />
 					</Grid>
 				);
 			})}

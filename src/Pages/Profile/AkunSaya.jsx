@@ -1,6 +1,14 @@
-import { Box, TextField } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 import { useRef, useState } from 'react';
-import { Container, Heading } from '../../Component/Profile/AkunSayaComp';
+import {
+	AccountDetail,
+	Container,
+	Content,
+	Heading,
+	PhotoSide,
+	Side,
+} from '../../Component/Profile/AkunSayaComp';
+import { SimpanButton } from '../../Templates/AccountDetail';
 
 export default function AkunSaya() {
 	const [userName, setUserName] = useState('mfadlihs');
@@ -19,14 +27,13 @@ export default function AkunSaya() {
 	return (
 		<Container>
 			<Heading></Heading>
-			<TextField
-				sx={{ userSelect: 'none' }}
-				ref={refInput}
-				variant='outlined'
-				color='tertiary'
-				value={userName}
-				onChange={userNameHandling}
-			/>
+			<Content>
+				<Side>
+					<AccountDetail />
+					<SimpanButton />
+				</Side>
+				<PhotoSide />
+			</Content>
 		</Container>
 	);
 }
