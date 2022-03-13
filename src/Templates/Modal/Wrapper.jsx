@@ -5,6 +5,6 @@ export const Wrapper = styled(Box)({
 	backgroundColor: '#fff',
 	minHeight: 575,
 	padding: '50px 30px',
-	width: 392,
+	width: 450,
 	borderRadius: 20,
 });
