@@ -6,4 +6,5 @@ export const Section = styled(Box)({
 	gap: 11,
 	padding: '0  40px',
 	marginBottom: 15,
+	alignItems: 'center',
 });

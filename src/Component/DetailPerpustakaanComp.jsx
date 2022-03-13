@@ -1,3 +1,4 @@
+import { BookOutlined, Call, LocationOnOutlined } from '@mui/icons-material';
 import { Box, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CardBook } from '../Templates/DetailPerpustakaan/CardBook';
@@ -22,15 +23,15 @@ export const LibProfile = () => {
 				Perpustakaan Kota Malang
 			</Typography>
 			<Section>
-				<Box>??</Box>
+				<BookOutlined />
 				<Typography color='secondary'>32RB Koleksi</Typography>
 			</Section>
 			<Section>
-				<Box>??</Box>
+				<Call />
 				<Typography color='secondary'>089654321790</Typography>
 			</Section>
 			<Section>
-				<Box>??</Box>
+				<LocationOnOutlined />
 				<Typography color='secondary'>
 					Jl. Ijen No.30A, Oro-oro Dowo, Klojen, Kota Malang, Jawa Timur 65119
 				</Typography>
