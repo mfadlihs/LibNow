@@ -25,11 +25,6 @@ export function PencarianBuku() {
 				<RatingTinggi />
 			</Container>
 			<Footer />
-			{/* <Content>
-				<Popular />
-				<Rekomendasi />
-				<RatingTinggi />
-			</Content> */}
 		</div>
 	);
 }

@@ -139,9 +139,9 @@ export function Content() {
 			{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => {
 				return (
 					<Grid lg={4} md={6} sm={6} xs={12} item key={index}>
-						{/* <CardWrapper> */}
-						<CardBook />
-						{/* </CardWrapper> */}
+						<GlobalLink to='/detail-buku/1'>
+							<CardBook />
+						</GlobalLink>
 					</Grid>
 				);
 			})}

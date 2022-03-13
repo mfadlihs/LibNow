@@ -13,7 +13,7 @@ import {
 	textSecondary,
 } from '../Theme/GlobalTheme';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
 	accountNav: {
@@ -38,6 +38,13 @@ export const Container = styled(Box)({
 
 export function AccountNav() {
 	const [nav, setNav] = useState('akunSaya');
+	const navigate = useNavigate();
+
+	const handleLogOut = () => {
+		localStorage.removeItem('id');
+		localStorage.removeItem('token');
+		location.reload();
+	};
 
 	return (
 		<Box>
@@ -65,7 +72,7 @@ export function AccountNav() {
 					<SectionText variant='button'>Riwayat Pinjam</SectionText>
 				</Section>
 			</LinkNav>
-			<Section>
+			<Section onClick={handleLogOut}>
 				<LogoutIcon />
 				<SectionText variant='button'>Keluar</SectionText>
 			</Section>

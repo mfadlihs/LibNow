@@ -6,6 +6,7 @@ import { Section } from '../Templates/DetailPerpustakaan/ProfileSection';
 import { Wrapper } from '../Templates/DetailPerpustakaan/Wrapper';
 import {
 	GlobalButton,
+	GlobalLink,
 	primary,
 	secondary,
 	tertiary,
@@ -44,23 +45,12 @@ export const Content = () => {
 			<Grid rowSpacing='20px' columnSpacing='20px' container>
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(i => (
 					<Grid key={i} item lg={3}>
-						<Link to=''>
+						<GlobalLink to='/detail-buku/1'>
 							<CardBook />
-						</Link>
+						</GlobalLink>
 					</Grid>
 				))}
 			</Grid>
 		</Grid>
 	);
 };
-
-// export function Content() {
-// 	return (
-// 		<Grid container>
-// 			<LibProfile />
-// 			<Grid item md={9}>
-// 				asdasd
-// 			</Grid>
-// 		</Grid>
-// 	);
-// }

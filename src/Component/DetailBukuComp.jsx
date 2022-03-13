@@ -28,6 +28,9 @@ import {
 } from '../Theme/GlobalTheme';
 import bookImage from '../Assets/Images/goodHabits.jpg';
 import StarIcon from '@mui/icons-material/Star';
+import { useAuth } from '../Config/Auth';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { ModalLogin } from '../Templates/Modal';
 
 const useStyles = makeStyles(theme => ({
 	// toolbar: theme.mixins.toolbar,
@@ -301,6 +304,19 @@ function SinopsisSection({ sinopsis }) {
 // ============== Opsi untuk pinjam ============
 export function Pinjam() {
 	const [value, setValue] = useState('');
+	const { token } = useAuth();
+	const navigate = useNavigate();
+	const [open, setOpen] = useState(false);
+	const handleClose = () => setOpen(false);
+	const handleOpen = () => setOpen(true);
+
+	const handlePinjam = () => {
+		if (token) {
+			navigate('/req-confirm');
+		} else {
+			handleOpen();
+		}
+	};
 
 	const radioHandler = e => {
 		setValue(e.target.value);
@@ -324,7 +340,6 @@ export function Pinjam() {
 					>
 						Mau pinjam?
 					</Typography>
-					{/* <Typography>Pilih perpustakaan:</Typography> */}
 					<FormControl>
 						<Typography gutterBottom>Pilih perpustakaan: </Typography>
 						<RadioGroup
@@ -351,10 +366,19 @@ export function Pinjam() {
 						</RadioGroup>
 					</FormControl>
 				</ContentPinjam>
-				<PinjamButton variant='contained' color='tertiary'>
+				<PinjamButton
+					onClick={handlePinjam}
+					variant='contained'
+					color='tertiary'
+				>
 					pinjam
 				</PinjamButton>
 			</Box>
+			<ModalLogin
+				open={open}
+				handleOpen={handleOpen}
+				handleClose={handleClose}
+			/>
 		</Grid>
 	);
 }

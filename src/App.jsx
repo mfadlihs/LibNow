@@ -15,27 +15,24 @@ import AkunSaya from './Pages/Profile/AkunSaya';
 import RiwayatPinjam from './Pages/Profile/RiwayatPinjam';
 import ReqConfirm from './Pages/ReqConfirm';
 import { AuthContext } from './Config/Auth';
-import { RestrictedRoute } from './Config/PrivateRoute';
+import { PrivateRoute, RestrictedRoute } from './Config/PrivateRoute';
 import { ModalLogin } from './Templates/Modal';
 import DetailPerpustakaan from './Pages/DetailPerpustakaan';
 
 function App() {
-	const [count, setCount] = useState(0);
-	const [username, setUsername] = useState(
-		JSON.parse(localStorage.getItem('username'))
-	);
+	const [id, setId] = useState(JSON.parse(localStorage.getItem('id')));
 	const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
 
-	const SetAndGetToken = (token, username) => {
+	const SetAndGetToken = (token, id) => {
 		localStorage.setItem('token', JSON.stringify(token));
-		localStorage.setItem('username', JSON.stringify(username));
+		localStorage.setItem('id', JSON.stringify(id));
 		setToken(token);
-		setUsername(username);
+		setId(id);
 	};
 
 	return (
 		<>
-			<AuthContext.Provider value={{ token, username, SetAndGetToken }}>
+			<AuthContext.Provider value={{ token, id, SetAndGetToken }}>
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route
@@ -59,12 +56,25 @@ function App() {
 					<Route path='/detail-buku/:buku' element={<DetailBuku />} />
 					<Route path='/profile/:profile' element={<Home />} />
 					<Route path='/bukti-peminjaman/:buku' element={<BuktiPembayaran />} />
-					<Route path='/profile' element={<Profile />}>
+					<Route
+						path='/profile'
+						element={
+							<PrivateRoute>
+								<Profile />
+							</PrivateRoute>
+						}
+					>
 						<Route path='' element={<AkunSaya />} />
 						<Route path='riwayat-pinjam' element={<RiwayatPinjam />} />
 					</Route>
-					<Route path='/req-confirm' element={<ReqConfirm />} />
-					<Route path='/cobamodal' element={<ModalLogin />} />
+					<Route
+						path='/req-confirm'
+						element={
+							<PrivateRoute>
+								<ReqConfirm />
+							</PrivateRoute>
+						}
+					/>
 					<Route
 						path='/detail-perpustakaan/:id'
 						element={<DetailPerpustakaan />}

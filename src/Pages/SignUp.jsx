@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function SignUp({ setisLogin }) {
+export default function SignUp() {
 	const { SetAndGetToken } = useAuth();
 
 	const classes = useStyles();

@@ -71,6 +71,8 @@ export const AccountDetail = () => {
 	);
 };
 
+
+
 export function PhotoSide() {
 	return (
 		<Box px={['100px ']}>

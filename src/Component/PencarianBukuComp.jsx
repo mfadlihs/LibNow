@@ -189,7 +189,9 @@ function Cards() {
 			{[1, 2, 3, 4].map((i, index) => {
 				return (
 					<Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-						<CardBook />
+						<GlobalLink to='/detail-buku/1'>
+							<CardBook />
+						</GlobalLink>
 					</Grid>
 				);
 			})}

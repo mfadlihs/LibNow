@@ -5,17 +5,13 @@ import { Login } from './Modal/Login';
 import { SignUp } from './Modal/Signup';
 import { Wrapper } from './Modal/Wrapper';
 
-export function ModalLogin() {
-	const [open, setOpen] = useState(false);
+export function ModalLogin(props) {
+	const { open, handleClose, handleOpen } = props;
+
 	const [isLogin, setIsLogin] = useState(false);
-	const handleClose = () => setOpen(false);
-	const handleOpen = () => setOpen(true);
 
 	return (
 		<>
-			<Button onClick={handleOpen} variant='contained' color='tertiary'>
-				buka
-			</Button>
 			<Container onClose={handleClose} open={open}>
 				<Wrapper>
 					{/* <Login /> */}

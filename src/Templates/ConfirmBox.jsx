@@ -1,6 +1,7 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
 	GlobalButton,
 	GlobalLink,
@@ -14,6 +15,11 @@ export function ConfirmBox() {
 	const [detik, setDetik] = useState(0);
 	const [menit, setMenit] = useState(0);
 	const [value, setValue] = useState(0);
+	const navigate = useNavigate();
+
+	const handleReq = () => {
+		navigate('/bukti-peminjaman/1');
+	};
 
 	setTimeout(() => {
 		setTime(time + 1);
@@ -45,7 +51,7 @@ export function ConfirmBox() {
 				<GlobalButton variant='contained' color='complementary1'>
 					batal
 				</GlobalButton>
-				<GlobalButton color='tertiary' variant='contained'>
+				<GlobalButton onClick={handleReq} color='tertiary' variant='contained'>
 					oke
 				</GlobalButton>
 			</ButtonContainer>
